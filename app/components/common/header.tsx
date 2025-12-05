@@ -3,7 +3,7 @@ import { Search } from 'lucide-react';
 
 const Header: React.FC = () => {
   return (
-    <header className="w-full flex justify-end items-center py-6 px-8 mb-6">
+    <header className="w-full flex justify-end items-center py-2 px-8 border-b border-gray-200 bg-white">
       <div className="flex items-center gap-4">
         <div className="relative">
           <input 
@@ -15,7 +15,7 @@ const Header: React.FC = () => {
         </div>
         <div className="w-8 h-8 rounded-full bg-gray-200 overflow-hidden border border-gray-200">
              <img 
-                src="https://picsum.photos/id/64/100/100" 
+                src="/images/ram.png" 
                 alt="Profile" 
                 className="w-full h-full object-cover grayscale"
             />

@@ -26,13 +26,13 @@ const NavItem = ({ icon, label, href, isActive = false }: NavItemProps) => {
     <Link href={href} className="w-full">
       <div 
         className={`box-border content-stretch flex gap-[8px] h-[36px] items-center px-[16px] py-[8px] relative rounded-[6px] shrink-0 w-full cursor-pointer ${
-          isActive ? 'bg-zinc-100' : 'bg-white'
+          isActive ? 'bg-gray-200' : 'bg-white'
         }`}
       >
         <div className="relative shrink-0 size-[16px] text-zinc-950">
           {icon}
         </div>
-        <p className="font-['Inter:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[14px] text-nowrap text-zinc-950 whitespace-pre">
+        <p className="font-medium leading-[20px] not-italic relative shrink-0 text-[14px] text-nowrap text-zinc-950 whitespace-pre">
           {label}
         </p>
       </div>
@@ -45,15 +45,14 @@ const Leftbar = () => {
 
   return (
     <div 
-      className="bg-white border-[0px_1px_0px_0px] border-solid max-w-64 border-zinc-200 box-border content-stretch flex flex-col gap-[16px] items-start relative size-full"
+      className=" h-screen bg-white border-[0px_1px_0px_0px] border-solid max-w-60 border-zinc-200 box-border content-stretch flex flex-col items-start relative size-full"
     >
-      <div className="box-border content-stretch flex flex-col gap-[24px] items-start px-[12px] py-[16px] relative shrink-0 w-full">
-        <div className="content-stretch flex items-center justify-center relative shrink-0">
-          <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[28px] not-italic relative shrink-0 text-[18px] text-zinc-950 text-nowrap tracking-[-0.45px] whitespace-pre">
+          <p className="w-full font-semibold text-[17px] text-zinc-950 px-4 py-3.5 border-b border-zinc-200">
             Ram Katwal
           </p>
-        </div>
-        <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 w-full">
+
+
+        <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 w-full px-2 py-2">
           <NavItem icon={<HouseIcon />} label="Home" href='/home' isActive={pathname === '/home' || pathname === '/'} />
           <NavItem icon={<PencilSimpleIcon />} label="Writing" href='/writing' isActive={pathname === '/writing'} />
           <NavItem icon={<StackSimpleIcon />} label="Stacks" href='/stacks' isActive={pathname === '/stacks'} />
@@ -63,7 +62,6 @@ const Leftbar = () => {
           <NavItem icon={<QuestionMarkIcon />} label="Career" href='/career' isActive={pathname === '/career'} />
         </div>
       </div>
-    </div>
   );
 };
 

@@ -2,14 +2,13 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            Ram Katwal To get started, edit the page.tsx file.
-          </h1>
-        </div>
-      </main>
+    <div className=" max-w-[50vw] bg-white px-4 py-4 flex flex-col items-start gap-4">
+
+      <p>
+        Hi 👋 I'm Onur (meaning "Honour" in English), a software engineer, DJ, writer, and minimalist based in Amsterdam, The Netherlands.<br /><br />
+        I develop things as a Senior Frontend Software Engineer. Previously, I worked as a Senior Frontend Software Engineer at heycar, Frontend Software Engineer at Yemeksepeti, Fullstack Software Engineer at Sistas, Mobile Developer at Tanbula, and Specialist at Apple.
+      </p>
+
     </div>
   );
 }
