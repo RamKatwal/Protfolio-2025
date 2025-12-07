@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Leftbar from "./components/common/Leftbar";
 import Header from "./components/common/header";
+import { TooltipProvider } from "./components/ui/tooltip";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,11 +30,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
-        <Leftbar />
-        <Header />
-        <main className="ml-60 mt-14 w-[calc(100%-240px)]">
-          {children}
-        </main>
+        <TooltipProvider>
+          <Leftbar />
+          <Header />
+          <main className="ml-60 mt-14 w-[calc(100%-240px)]">
+            {children}
+          </main>
+        </TooltipProvider>
       </body>
     </html>
   );

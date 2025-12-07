@@ -25,14 +25,18 @@ const NavItem = ({ icon, label, href, isActive = false }: NavItemProps) => {
   return (
     <Link href={href} className="w-full">
       <div 
-        className={`box-border content-stretch flex gap-[8px] h-[36px] items-center px-[16px] py-[8px] relative rounded-[6px] shrink-0 w-full cursor-pointer ${
-          isActive ? 'bg-gray-200' : 'bg-white'
+        className={`box-border content-stretch flex gap-[8px] h-[36px] items-center px-[16px] py-[8px] relative rounded-[6px] shrink-0 w-full cursor-pointer transition-all duration-200 ease-in-out ${
+          isActive 
+            ? 'bg-black text-white shadow-lg' 
+            : 'bg-transparent hover:bg-gray-100 text-zinc-950'
         }`}
       >
-        <div className="relative shrink-0 size-[16px] text-zinc-950">
+        <div className={`relative shrink-0 size-[16px] ${isActive ? 'text-white' : 'text-zinc-950'}`}>
           {icon}
         </div>
-        <p className="font-medium leading-[20px] not-italic relative shrink-0 text-[14px] text-nowrap text-zinc-950 whitespace-pre">
+        <p className={`font-medium leading-[20px] not-italic relative shrink-0 text-[14px] text-nowrap whitespace-pre ${
+          isActive ? 'text-white' : 'text-zinc-950'
+        }`}>
           {label}
         </p>
       </div>
