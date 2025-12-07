@@ -45,7 +45,7 @@ const Leftbar = () => {
 
   return (
     <div 
-      className=" h-screen bg-white border-[0px_1px_0px_0px] border-solid max-w-60 border-zinc-200 box-border content-stretch flex flex-col items-start relative size-full"
+      className="h-screen fixed left-0 top-0 z-10 bg-white w-60 border-r border-zinc-200 content-stretch flex flex-col items-start"
     >
           <p className="w-full font-semibold text-[17px] text-zinc-950 px-4 py-3.5 border-b border-zinc-200">
             Ram Katwal

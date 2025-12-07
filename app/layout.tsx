@@ -27,14 +27,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-row w-full`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
         <Leftbar />
-        <div className="flex flex-col w-full">
         <Header />
-        {children}
-        </div>
-       
+        <main className="ml-60 mt-14 w-[calc(100%-240px)]">
+          {children}
+        </main>
       </body>
     </html>
   );

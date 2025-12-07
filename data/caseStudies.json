@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "title": "Puffless App",
+    "description": "To let user minimize smoking and keep tracks of habits.",
+    "links": [
+      { "label": "Case Study", "url": "/case-studies/puffless" },
+      { "label": "Live Site", "url": "https://livesite.puffless.com" },
+      { "label": "Notion", "url": "https://notion.so/puffless" },
+      { "label": "Dribbble", "url": "https://dribbble.com/puffless-design" }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Minimalist Blog Platform",
+    "description": "A performance-optimized blog engine built with Next.js and MDX.",
+    "links": [
+      { "label": "Case Study", "url": "/case-studies/minimal-blog" },
+      { "label": "Codebase", "url": "https://github.com/myusername/minimal-blog" }
+    ]
+  }
+]
+
