@@ -16,6 +16,8 @@ export interface BlogPost {
   date: string;
   views: string;
   image?: string; // Optional image for the detail view
+  slug?: string; // Slug for MDX-based posts
+  content?: string; // MDX content
 }
 
 export interface SidebarItem {

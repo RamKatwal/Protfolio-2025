@@ -1,14 +1,18 @@
+'use client';
+
 import React from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { BlogPost } from '../../../types';
 import { Rss } from 'lucide-react';
 
 interface WritingFeedProps {
   posts: BlogPost[];
-  activePostId: string;
-  onSelectPost: (id: string) => void;
 }
 
-const WritingFeed: React.FC<WritingFeedProps> = ({ posts, activePostId, onSelectPost }) => {
+const WritingFeed: React.FC<WritingFeedProps> = ({ posts }) => {
+  const pathname = usePathname();
+
   return (
     <div className="flex flex-col h-full border-r border-gray-100 bg-white">
       {/* Header Section */}
@@ -23,14 +27,16 @@ const WritingFeed: React.FC<WritingFeedProps> = ({ posts, activePostId, onSelect
       {/* List Section */}
       <div className="flex-1 overflow-y-auto no-scrollbar p-3 space-y-1">
         {posts.map((post) => {
-          const isActive = post.id === activePostId;
+          const postSlug = post.slug || post.id;
+          const postPath = `/writing/${postSlug}`;
+          const isActive = pathname === postPath;
 
           return (
-            <div
+            <Link
               key={post.id}
-              onClick={() => onSelectPost(post.id)}
+              href={postPath}
               className={`
-                group relative p-4 rounded-xl cursor-pointer transition-all duration-200 ease-in-out
+                block group relative p-4 rounded-xl cursor-pointer transition-all duration-200 ease-in-out
                 ${isActive ? 'bg-black text-white shadow-lg' : 'hover:bg-gray-100 text-gray-900 bg-transparent'}
               `}
             >
@@ -52,7 +58,7 @@ const WritingFeed: React.FC<WritingFeedProps> = ({ posts, activePostId, onSelect
               {isActive && (
                 <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 rounded-r-full bg-white/10 hidden" />
               )}
-            </div>
+            </Link>
           );
         })}
       </div>

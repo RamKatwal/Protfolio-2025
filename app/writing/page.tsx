@@ -1,23 +1,23 @@
-'use client';
-
-import { useState } from 'react';
 import WritingFeed from "@/app/components/Reusable/writingfeed";
-import { BLOG_POSTS } from "@/app/constants";
+import { getAllPosts } from "@/lib/mdx";
+import { BlogPost } from "@/types";
 
-export default function WritingPage() {
-  const [activePostId, setActivePostId] = useState<string>(BLOG_POSTS[0]?.id || '');
-
-  const handleSelectPost = (id: string) => {
-    setActivePostId(id);
-  };
+export default async function WritingPage() {
+  const mdxPosts = await getAllPosts();
+  
+  // Convert MDX posts to BlogPost format for compatibility
+  const posts: BlogPost[] = mdxPosts.map((post, index) => ({
+    id: post.slug,
+    title: post.frontmatter.title,
+    date: post.frontmatter.date,
+    views: post.frontmatter.views,
+    image: post.frontmatter.image,
+    slug: post.slug,
+  }));
 
   return (
     <div className="max-w-[35vw] h-full bg-white flex flex-col items-start border-r border-gray-200 gap-4">
-      <WritingFeed 
-        posts={BLOG_POSTS}
-        activePostId={activePostId}
-        onSelectPost={handleSelectPost}
-      />
+      <WritingFeed posts={posts} />
     </div>
   );
 }
