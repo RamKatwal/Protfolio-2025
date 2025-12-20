@@ -4,7 +4,7 @@ import { Search } from 'lucide-react';
 
 const Header: React.FC = () => {
   return (
-    <header className="w-[calc(100%-240px)] fixed top-0 left-60 right-0 z-20 flex justify-end items-center py-2 px-8 border-b border-gray-200 bg-white">
+    <header className="w-[calc(100%-200px)] fixed top-0 left-[200px] right-0 z-20 flex justify-end items-center py-2 px-8 border-b border-gray-200 bg-white">
       <div className="flex items-center gap-4">
         <div className="relative">
           <input 

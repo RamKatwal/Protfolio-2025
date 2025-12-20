@@ -2,7 +2,8 @@ import React from 'react';
 import { CaseStudyData } from '@/types'; 
 import caseStudies from '@/data/caseStudies.json';
 import { Badge } from '@/app/components/ui/badge';
-import Link from 'next/link'; 
+import Link from 'next/link';
+import Image from 'next/image'; 
 
 // Import JSON data
 // Use a type assertion to inform TypeScript about the structure of the imported JSON
@@ -46,24 +47,42 @@ interface CaseStudyItemProps {
 
 const CaseStudyItem: React.FC<CaseStudyItemProps> = ({ study }) => {
   return (
-    <div className="mb-8">
-      {/* Project Title (e.g., Puffless App) */}
-      <h3 className="text-sm font-medium">{study.title}</h3> 
-      
-      {/* Description */}
-      <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-        {study.description}
-      </p>
-      
-      {/* Badges Container */}
-      <div className="flex flex-wrap items-center">
-        {study.links.map((link, index) => (
-          <CaseStudyLinkBadge 
-            key={index}
-            label={link.label} 
-            url={link.url} 
-          />
-        ))}
+    <div className="py-2 border-b border-gray-200 last:border-b-0">
+      <div className="flex gap-3">
+        {/* Content */}
+        <div className="flex-1 min-w-0">
+          {/* Project Title (e.g., Puffless App) */}
+          <h3 className="text-sm font-medium">{study.title}</h3> 
+          
+          {/* Description */}
+          <p className="text-xs text-gray-600 dark:text-gray-400">
+            {study.description}
+          </p>
+          
+          {/* Badges Container */}
+          <div className="flex flex-wrap items-center">
+            {study.links.map((link, index) => (
+              <CaseStudyLinkBadge 
+                key={index}
+                label={link.label} 
+                url={link.url} 
+              />
+            ))}
+          </div>
+        </div>
+        
+        {/* Logo */}
+        {study.logo && (
+          <div className="flex-shrink-0 w-10 h-10 rounded-lg overflow-hidden border border-gray-200 flex items-center justify-center bg-gray-50">
+            <Image 
+              src={study.logo} 
+              alt={`${study.title} logo`} 
+              width={40}
+              height={40}
+              className="w-full h-full object-contain p-1.5"
+            />
+          </div>
+        )}
       </div>
     </div>
   );
@@ -73,15 +92,15 @@ const CaseStudyItem: React.FC<CaseStudyItemProps> = ({ study }) => {
 // --- Main Component: Casestudysection ---
 const Casestudysection: React.FC = () => {
   return (
-    <section className="w-full py-4 px-4 border-t border-gray-200 pb-8">
-      <h2 className="text-base font-bold">Case Studies</h2>
+    <section className="w-full py-4 px-4 border-t border-gray-200">
+      <h2 className="font-bold text-h1">Case Studies</h2>
       
       {/* Subtext from the image */}
-      <p className="text-gray-500 dark:text-gray-400 mb-6 text-xs">
+      <p className="text-gray-500 dark:text-gray-400 mb-4 text-xs">
         Your personal playlists. Updated daily.
       </p>
       
-      <div className="space-y-6">
+      <div>
         {/* Map over the case studies data and render the items */}
         {caseStudiesData.map((study) => (
           <CaseStudyItem

@@ -7,6 +7,7 @@ export interface CaseStudyData {
   id: number;
   title: string;
   description: string;
+  logo?: string; // Optional logo image path
   links: LinkData[];
 }
 
