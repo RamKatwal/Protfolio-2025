@@ -68,8 +68,8 @@ const Experience: React.FC = () => {
 
   return (
     <section className="w-full py-4 px-4 border-t border-gray-200 pb-8">
-      <h2 className="text-base font-bold mb-2">Experience</h2>
-      <p className="text-gray-500 dark:text-gray-400 mb-6 text-xs">
+      <h2 className="text-base font-bold">Experience</h2>
+      <p className="text-gray-500 dark:text-gray-400 mb-2 text-xs">
         My professional journey and key achievements.
       </p>
       
