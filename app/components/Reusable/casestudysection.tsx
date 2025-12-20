@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import { CaseStudyData } from '@/types'; 
 import caseStudies from '@/data/caseStudies.json';
 import { Badge } from '@/app/components/ui/badge';
@@ -43,21 +45,61 @@ const CaseStudyLinkBadge: React.FC<CaseStudyLinkBadgeProps> = ({ label, url }) =
 // --- Helper Component: CaseStudyItem (The Project Block) ---
 interface CaseStudyItemProps {
   study: CaseStudyData;
+  onHover: (study: CaseStudyData | null, position: { x: number; y: number }) => void;
+  isHovered: boolean;
 }
 
-const CaseStudyItem: React.FC<CaseStudyItemProps> = ({ study }) => {
+const CaseStudyItem: React.FC<CaseStudyItemProps> = ({ study, onHover, isHovered }) => {
+  const handleContentMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (study.previewImage) {
+      onHover(study, {
+        x: e.clientX,
+        y: e.clientY
+      });
+    }
+  };
+
+  const handleContentMouseLeave = () => {
+    onHover(null, { x: 0, y: 0 });
+  };
+
+  const handleContentMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (study.previewImage) {
+      onHover(study, {
+        x: e.clientX,
+        y: e.clientY
+      });
+    }
+  };
+
   return (
-    <div className="py-2 border-b border-gray-200 last:border-b-0">
+    <div className={`py-2 border-b border-gray-200 last:border-b-0 transition-all duration-200 ease-out ${
+      isHovered ? 'bg-gray-50/50 rounded-lg -mx-2 px-2 shadow-sm' : ''
+    }`}>
       <div className="flex gap-3">
         {/* Content */}
         <div className="flex-1 min-w-0">
-          {/* Project Title (e.g., Puffless App) */}
-          <h3 className="text-sm font-medium">{study.title}</h3> 
-          
-          {/* Description */}
-          <p className="text-xs text-gray-600 dark:text-gray-400">
-            {study.description}
-          </p>
+          {/* Title and Description Container */}
+          <div
+            className="cursor-pointer"
+            onMouseEnter={handleContentMouseEnter}
+            onMouseLeave={handleContentMouseLeave}
+            onMouseMove={handleContentMouseMove}
+          >
+            {/* Project Title (e.g., Puffless App) */}
+            <h3 className={`text-sm font-medium transition-colors duration-200 ${
+              isHovered ? 'text-gray-900' : ''
+            }`}>
+              {study.title}
+            </h3> 
+            
+            {/* Description */}
+            <p className={`text-xs transition-colors duration-200 ${
+              isHovered ? 'text-gray-700 dark:text-gray-300' : 'text-gray-600 dark:text-gray-400'
+            }`}>
+              {study.description}
+            </p>
+          </div>
           
           {/* Badges Container */}
           <div className="flex flex-wrap items-center">
@@ -73,13 +115,15 @@ const CaseStudyItem: React.FC<CaseStudyItemProps> = ({ study }) => {
         
         {/* Logo */}
         {study.logo && (
-          <div className="flex-shrink-0 w-10 h-10 rounded-lg overflow-hidden border border-gray-200 flex items-center justify-center bg-gray-50">
+          <div className={`flex-shrink-0 w-10 h-10 rounded-lg overflow-hidden border flex items-center justify-center transition-all duration-200 ${
+            isHovered ? 'border-gray-300 bg-gray-100 shadow-sm scale-105' : 'border-gray-200 bg-gray-50'
+          }`}>
             <Image 
               src={study.logo} 
               alt={`${study.title} logo`} 
               width={40}
               height={40}
-              className="w-full h-full object-contain p-1.5"
+              className="w-full h-full object-contain p-1.5 transition-transform duration-200"
             />
           </div>
         )}
@@ -91,8 +135,16 @@ const CaseStudyItem: React.FC<CaseStudyItemProps> = ({ study }) => {
 
 // --- Main Component: Casestudysection ---
 const Casestudysection: React.FC = () => {
+  const [hoveredStudy, setHoveredStudy] = useState<CaseStudyData | null>(null);
+  const [imagePosition, setImagePosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+
+  const handleHover = (study: CaseStudyData | null, position: { x: number; y: number }) => {
+    setHoveredStudy(study);
+    setImagePosition(position);
+  };
+
   return (
-    <section className="w-full py-4 px-4 border-t border-gray-200">
+    <section className="w-full py-4 px-4 border-t border-gray-200 relative">
       <h2 className="font-bold text-h1">Case Studies</h2>
       
       {/* Subtext from the image */}
@@ -106,9 +158,35 @@ const Casestudysection: React.FC = () => {
           <CaseStudyItem
             key={study.id}
             study={study}
+            onHover={handleHover}
+            isHovered={hoveredStudy?.id === study.id}
           />
         ))}
       </div>
+
+      {/* Floating Preview Image */}
+      {hoveredStudy?.previewImage && (
+        <div
+          className="fixed pointer-events-none z-50 transition-all duration-200 ease-out"
+          style={{
+            left: `${imagePosition.x + 16}px`,
+            top: `${imagePosition.y}px`,
+            transform: 'translateY(-50%)',
+            opacity: hoveredStudy ? 1 : 0,
+            willChange: 'transform, opacity',
+          }}
+        >
+          <div className="relative w-64 h-40 rounded-lg overflow-hidden shadow-2xl border border-gray-200 bg-white transition-transform duration-200">
+            <Image
+              src={hoveredStudy.previewImage}
+              alt={hoveredStudy.title}
+              fill
+              className="object-cover transition-transform duration-200"
+              sizes="256px"
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 };

@@ -7,9 +7,9 @@ export default function Home() {
   return (
     <div className=" max-w-[50vw] h-full bg-white flex flex-col items-start border-r border-gray-200">
       <div className="flex flex-col items-start px-4 py-2 gap-4"> 
-        <div className="rounded-xl overflow-hidden border border-gray-200">
+        <div className="w-16 h-16 rounded-xl overflow-hidden border border-gray-200">
           <Image 
-            src="/images/Ram.png" 
+            src="/images/ramlogo.png" 
             alt="Profile" 
             width={64}
             height={64}
@@ -19,8 +19,7 @@ export default function Home() {
         <p className="text-sm">
           Hi I&apos;m {" "}
           <LinkPreview href="https://www.instagram.com/visualsofalex11/">visualsofalex11</LinkPreview>
-          , a software engineer, DJ, writer, and minimalist based in Amsterdam, The Netherlands.<br /><br />
-          I develop things as a Senior Frontend Software Engineer. Previously, I worked as a Senior Frontend Software Engineer at heycar, Frontend Software Engineer at Yemeksepeti, Fullstack Software Engineer at Sistas, Mobile Developer at Tanbula, and Specialist at Apple.
+          , a software engineer, DJ, writer, and minimalist based in Amsterdam, The Netherlands.
         </p>
         </div>
         <Casestudysection />

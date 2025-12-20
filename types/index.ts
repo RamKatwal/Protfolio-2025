@@ -8,6 +8,7 @@ export interface CaseStudyData {
   title: string;
   description: string;
   logo?: string; // Optional logo image path
+  previewImage?: string; // Optional preview image for hover effect
   links: LinkData[];
 }
 

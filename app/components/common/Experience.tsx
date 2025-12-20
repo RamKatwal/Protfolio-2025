@@ -4,38 +4,52 @@ import React, { useState } from 'react';
 import { ExperienceData } from '@/types';
 import experienceData from '@/data/experience.json';
 import { ChevronRightIcon } from './icons';
+import Image from 'next/image';
 
 const experiences: ExperienceData[] = experienceData as ExperienceData[];
 
 interface ExperienceItemProps {
   experience: ExperienceData;
-  isOpen: boolean;
+  isOpen: boolean;  
   onToggle: () => void;
 }
 
 const ExperienceItem: React.FC<ExperienceItemProps> = ({ experience, isOpen, onToggle }) => {
   return (
     <div className="border-b border-gray-200 last:border-b-0">
-      <button
-        onClick={onToggle}
-        className="w-full flex items-center justify-between py-3 px-0 hover:bg-transparent transition-colors group cursor-pointer"
-      >
-        <div className="flex-1 text-left">
-          <div className="flex items-center gap-2 mb-0.5">
-            <h3 className="text-sm font-medium text-gray-900">{experience.title}</h3>
-            <span className="text-xs text-gray-400">•</span>
-            <span className="text-sm text-gray-600">{experience.company}</span>
-          </div>
-          <p className="text-xs text-gray-500">{experience.period}</p>
-        </div>
-        <div
-          className={`ml-4 w-4 h-4 flex-shrink-0 transition-transform duration-200 text-gray-400 group-hover:text-gray-600 ${
-            isOpen ? 'rotate-90' : ''
-          }`}
+      <div className="flex gap-3 items-start">
+        <button
+          onClick={onToggle}
+          className="flex-1 flex items-center py-3 px-0 hover:bg-transparent transition-colors group cursor-pointer"
         >
-          <ChevronRightIcon />
+          <div className="flex-1 text-left">
+            <div className="flex items-center gap-2 mb-0.5">
+              <h3 className="text-sm font-medium text-gray-900">{experience.title}</h3>
+              <span className="text-xs text-gray-400">•</span>
+              <span className="text-sm text-gray-600">{experience.company}</span>
+            </div>
+            <p className="text-xs text-gray-500">{experience.period}</p>
+          </div>
+          <div
+            className={`ml-2 w-4 h-4 flex-shrink-0 transition-transform duration-200 text-gray-400 group-hover:text-gray-600 ${
+              isOpen ? 'rotate-90' : ''
+            }`}
+          >
+            <ChevronRightIcon />
+          </div>
+        </button>
+        
+        {/* Logo */}
+        <div className="flex-shrink-0 w-10 h-10 rounded-lg overflow-hidden border border-gray-200 flex items-center justify-center bg-gray-50 mt-3">
+          <Image 
+            src="/linear.svg" 
+            alt={`${experience.company} logo`} 
+            width={40}
+            height={40}
+            className="w-full h-full object-contain p-1.5"
+          />
         </div>
-      </button>
+      </div>
       
       {isOpen && (
         <div className="pt-2 pb-4 pl-0">

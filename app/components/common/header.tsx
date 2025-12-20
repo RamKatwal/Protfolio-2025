@@ -1,6 +1,7 @@
 import React from 'react';
-import Image from 'next/image';
 import { Search } from 'lucide-react';
+import { FaXTwitter, FaGithub, FaLinkedin } from 'react-icons/fa6';
+import Link from 'next/link';
 
 const Header: React.FC = () => {
   return (
@@ -14,14 +15,36 @@ const Header: React.FC = () => {
           />
           <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
         </div>
-        <div className="w-8 h-8 rounded-full bg-gray-200 overflow-hidden border border-gray-200">
-             <Image 
-                src="/images/Ram.png" 
-                alt="Profile" 
-                width={32}
-                height={32}
-                className="w-full h-full object-cover grayscale"
-            />
+        
+        {/* Social Media Icons */}
+        <div className="flex items-center gap-3">
+          <Link 
+            href="https://twitter.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-gray-600 hover:text-gray-900 transition-colors"
+            aria-label="X (Twitter)"
+          >
+            <FaXTwitter size={18} />
+          </Link>
+          <Link 
+            href="https://github.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-gray-600 hover:text-gray-900 transition-colors"
+            aria-label="GitHub"
+          >
+            <FaGithub size={18} />
+          </Link>
+          <Link 
+            href="https://linkedin.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-gray-600 hover:text-gray-900 transition-colors"
+            aria-label="LinkedIn"
+          >
+            <FaLinkedin size={18} />
+          </Link>
         </div>
       </div>
     </header>

@@ -58,12 +58,11 @@ const Leftbar = () => {
 
         <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 w-full px-2 py-2">
           <NavItem icon={<HouseIcon />} label="Home" href='/' isActive={pathname === '/'} />
+          <NavItem icon={<LineSegmentIcon />} label="About" href='/about-me' isActive={pathname === '/about-me'} />
           <NavItem icon={<PencilSimpleIcon />} label="Writing" href='/writing' isActive={pathname === '/writing'} />
           <NavItem icon={<StackSimpleIcon />} label="Stacks" href='/stacks' isActive={pathname === '/stacks'} />
-          <NavItem icon={<LineSegmentIcon />} label="About me" href='/about-me' isActive={pathname === '/about-me'} />
           <NavItem icon={<BookmarkSimpleIcon />} label="Bookmarks" href='/bookmarks' isActive={pathname === '/bookmarks'} />
           <NavItem icon={<QuestionMarkIcon />} label="Resources" href='/resources' isActive={pathname === '/resources'} />
-          <NavItem icon={<QuestionMarkIcon />} label="Career" href='/career' isActive={pathname === '/career'} />
         </div>
       </div>
   );

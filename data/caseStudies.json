@@ -4,6 +4,8 @@
     "title": "Linear",
     "description": "The issue tracking tool you'll enjoy using.",
     "logo": "/linear.svg",
+    "previewImage": "/images/atlar-dashboard.jpg",
+
     "links": [
       { "label": "Case Study", "url": "/case-studies/linear" },
       { "label": "Live Site", "url": "https://linear.app" }
@@ -14,6 +16,7 @@
     "title": "Cursor",
     "description": "The AI-first code editor built for pair programming.",
     "logo": "/cursor.svg",
+    "previewImage": "/images/atlar-dashboard.jpg",
     "links": [
       { "label": "Case Study", "url": "/case-studies/cursor" },
       { "label": "Live Site", "url": "https://cursor.sh" }
