@@ -4,7 +4,6 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { BlogPost } from '../../../types';
-import { Rss } from 'lucide-react';
 
 interface WritingFeedProps {
   posts: BlogPost[];

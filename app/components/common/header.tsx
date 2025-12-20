@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { Search } from 'lucide-react';
 
 const Header: React.FC = () => {
@@ -14,9 +15,11 @@ const Header: React.FC = () => {
           <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
         </div>
         <div className="w-8 h-8 rounded-full bg-gray-200 overflow-hidden border border-gray-200">
-             <img 
+             <Image 
                 src="/images/Ram.png" 
                 alt="Profile" 
+                width={32}
+                height={32}
                 className="w-full h-full object-cover grayscale"
             />
         </div>

@@ -6,7 +6,7 @@ export default async function WritingPage() {
   const mdxPosts = await getAllPosts();
   
   // Convert MDX posts to BlogPost format for compatibility
-  const posts: BlogPost[] = mdxPosts.map((post, index) => ({
+  const posts: BlogPost[] = mdxPosts.map((post) => ({
     id: post.slug,
     title: post.frontmatter.title,
     date: post.frontmatter.date,

@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import Image from 'next/image';
 import { getPostBySlug, getAllPosts, renderMDX } from '@/lib/mdx';
 import type { Metadata } from 'next';
 
@@ -50,9 +51,11 @@ export default async function PostPage({ params }: PageProps) {
             <span>{post.frontmatter.views}</span>
           </div>
           {post.frontmatter.image && (
-            <img
+            <Image
               src={post.frontmatter.image}
               alt={post.frontmatter.title}
+              width={800}
+              height={400}
               className="mt-6 rounded-lg w-full"
             />
           )}

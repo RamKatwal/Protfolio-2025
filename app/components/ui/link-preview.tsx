@@ -173,7 +173,7 @@ export function LinkPreview({
               url: href,
             });
             setIsLoading(false);
-          } catch (fallbackErr) {
+          } catch {
             setError(error);
             setIsLoading(false);
           }

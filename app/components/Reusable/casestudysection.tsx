@@ -1,5 +1,5 @@
 import React from 'react';
-import { CaseStudyData, LinkData } from '@/types'; 
+import { CaseStudyData } from '@/types'; 
 import caseStudies from '@/data/caseStudies.json';
 import { Badge } from '@/app/components/ui/badge';
 import Link from 'next/link'; 
