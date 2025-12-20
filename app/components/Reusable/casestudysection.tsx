@@ -74,11 +74,10 @@ const CaseStudyItem: React.FC<CaseStudyItemProps> = ({ study }) => {
 const Casestudysection: React.FC = () => {
   return (
     <section className="w-full py-4 px-4 border-t border-gray-200 pb-8">
-      {/* Main Section Heading */}
-      <h2 className="text-2xl font-bold">Case Studies</h2>
+      <h2 className="text-base font-bold">Case Studies</h2>
       
       {/* Subtext from the image */}
-      <p className="text-gray-500 dark:text-gray-400 mb-6 text-sm">
+      <p className="text-gray-500 dark:text-gray-400 mb-6 text-xs">
         Your personal playlists. Updated daily.
       </p>
       

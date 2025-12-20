@@ -26,3 +26,11 @@ export interface SidebarItem {
   count?: number;
   isActive?: boolean;
 }
+
+export interface ExperienceData {
+  id: number;
+  title: string;
+  company: string;
+  period: string;
+  points: string[];
+}
