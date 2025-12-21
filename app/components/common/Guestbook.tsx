@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { BookOpen, X, User } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
-import { MessageInput } from '@/components/ui/message-input';
+import { Textarea } from '@/app/components/ui/textarea';
 import Image from 'next/image';
 import ScrollReveal from './ScrollReveal';
 
@@ -211,13 +211,18 @@ const Guestbook: React.FC = () => {
             className="h-8 text-xs bg-white border-gray-200 focus-visible:ring-gray-300 focus-visible:ring-1"
             required
           />
-          <MessageInput
+          <Textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Leave a message..."
-            isGenerating={isSubmitting}
-            submitOnEnter={true}
-            className="text-xs"
+            className="text-xs resize-none"
+            rows={3}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                handleSubmit(e as any);
+              }
+            }}
           />
         </form>
       </div>
