@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { BookOpen, X, User } from 'lucide-react';
+import { BookOpen, X, User, Send } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
 import { Textarea } from '@/app/components/ui/textarea';
@@ -224,6 +224,16 @@ const Guestbook: React.FC = () => {
               }
             }}
           />
+          <div className="flex justify-end">
+            <Button
+              type="submit"
+              disabled={isSubmitting || !name.trim() || !message.trim()}
+              className="h-8 px-4 text-xs"
+            >
+              <Send className="h-3.5 w-3.5 mr-1.5" />
+              Send
+            </Button>
+          </div>
         </form>
       </div>
     </div>
