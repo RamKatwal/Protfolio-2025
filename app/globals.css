@@ -62,3 +62,13 @@ body {
   color: var(--foreground);
   font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
+
+/* 3D Book Hover Effect */
+.group:hover .book-3d {
+  transform: perspective(1000px) rotateY(15deg) rotateX(-5deg) scale(1.1) translateZ(20px);
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+}
+
+.group:hover .book-3d > div:last-child {
+  opacity: 1;
+}
