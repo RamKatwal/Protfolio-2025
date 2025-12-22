@@ -312,7 +312,7 @@ const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, onClose 
   return (
     <div className={`w-full ${isMobileOverlay ? 'h-screen' : 'h-[calc(100vh-56px)]'} bg-white flex flex-col ${isMobileOverlay ? '' : 'border-l border-gray-200'} overflow-hidden`}>
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 flex-shrink-0">
         <div className="flex items-center gap-2">
           <BookOpen className="w-4 h-4 text-gray-600" />
           <h2 className="text-xs font-semibold text-gray-900">Guestbook</h2>
@@ -322,14 +322,14 @@ const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, onClose 
           variant="ghost"
           size="icon"
           onClick={handleClose}
-          className="h-8 w-8"
+          className="h-8 w-8 text-gray-900 hover:text-gray-900 hover:bg-gray-100"
         >
-          <X className="w-4 h-4" />
+          <X className="w-4 h-4 text-gray-900" />
         </Button>
       </div>
 
-      {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
+      {/* Messages - Scrollable */}
+      <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4 min-h-0 pb-0">
         {error && (
           <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
             <p className="text-xs text-red-600">{error}</p>
@@ -367,8 +367,8 @@ const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, onClose 
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input Form - Progressive Disclosure */}
-      <div className="border-t border-gray-200 p-3 bg-gray-50/30">
+      {/* Input Form - Progressive Disclosure - Sticky at bottom */}
+      <div className="border-t border-gray-200 p-3 bg-white flex-shrink-0 sticky bottom-0 z-10">
         <form onSubmit={handleSubmit} className="space-y-2">
           {/* Message Input - Always visible */}
           <Textarea

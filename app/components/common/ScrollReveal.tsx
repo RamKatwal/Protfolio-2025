@@ -30,8 +30,8 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
         });
       },
       {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px',
+        threshold: 0.05,
+        rootMargin: '0px 0px -20px 0px',
       }
     );
 
@@ -50,11 +50,14 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
   return (
     <div
       ref={ref}
-      className={`w-full transition-all duration-700 ease-out ${
+      className={`w-full transition-all duration-300 ease-out ${
         isVisible
           ? 'opacity-100 translate-y-0'
-          : 'opacity-0 translate-y-8'
+          : 'opacity-0 translate-y-4'
       } ${className}`}
+      style={{
+        willChange: isVisible ? 'auto' : 'transform, opacity',
+      }}
     >
       {children}
     </div>

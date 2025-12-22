@@ -45,16 +45,25 @@
   --font-sans: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
+/* Dark mode disabled - keeping light mode colors */
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
-html, body {
+html {
+  scroll-behavior: smooth;
   overflow-x: hidden;
   width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
 }
 
 body {

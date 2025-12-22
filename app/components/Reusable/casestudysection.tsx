@@ -95,7 +95,7 @@ const CaseStudyItem: React.FC<CaseStudyItemProps> = ({ study, onHover, isHovered
             
             {/* Description */}
             <p className={`text-xs transition-colors duration-200 ${
-              isHovered ? 'text-gray-700 dark:text-gray-300' : 'text-gray-600 dark:text-gray-400'
+              isHovered ? 'text-gray-700' : 'text-gray-600'
             }`}>
               {study.description}
             </p>
@@ -148,7 +148,7 @@ const Casestudysection: React.FC = () => {
       <h2 className="font-bold text-h1">Case Studies</h2>
       
       {/* Subtext from the image */}
-      <p className="text-gray-500 dark:text-gray-400 mb-4 text-xs">
+      <p className="text-gray-500 mb-4 text-xs">
         Your personal playlists. Updated daily.
       </p>
       

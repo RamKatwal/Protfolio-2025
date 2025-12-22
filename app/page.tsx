@@ -17,7 +17,7 @@ export default function Home() {
     <>
       <div className="w-full h-[calc(100vh-56px)] flex flex-col md:flex-row overflow-hidden">
         {/* Main Content */}
-        <div className="flex-1 h-full bg-white flex flex-col items-start border-r border-gray-200 overflow-y-auto md:overflow-hidden">
+        <div className="flex-1 h-full bg-white flex flex-col items-start border-r border-gray-200 overflow-y-auto md:overflow-hidden overscroll-contain scroll-smooth">
           <div className="w-full flex flex-col">
             <ScrollReveal delay={0}>
               <div className="flex flex-col items-start px-4 py-2 gap-4"> 
