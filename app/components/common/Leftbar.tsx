@@ -34,7 +34,7 @@ const NavItem = ({ icon, label, href, isActive = false }: NavItemProps) => {
         <div className={`relative shrink-0 size-[16px] ${isActive ? 'text-white' : 'text-zinc-950'}`}>
           {icon}
         </div>
-        <p className={`font-medium leading-[20px] not-italic relative shrink-0 text-[14px] text-nowrap whitespace-pre ${
+        <p className={`font-medium leading-[18px] not-italic relative shrink-0 text-xs text-nowrap whitespace-pre ${
           isActive ? 'text-white' : 'text-zinc-950'
         }`}>
           {label}
@@ -51,7 +51,7 @@ const Leftbar = () => {
     <div 
       className="h-screen fixed left-0 top-0 z-10 bg-white w-50 border-r border-zinc-200 content-stretch flex flex-col items-start"
     >
-          <p className="w-full font-semibold text-[17px] text-zinc-950 px-4 py-3.5 border-b border-zinc-200">
+          <p className="w-full font-semibold text-sm text-zinc-950 px-4 py-3.5 border-b border-zinc-200">
             Ram Katwal
           </p>
 

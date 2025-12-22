@@ -24,9 +24,9 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({ experience, isOpen, onT
         >
           <div className="flex-1 text-left">
             <div className="flex items-center gap-2 mb-0.5">
-              <h3 className="text-sm font-medium text-gray-900">{experience.title}</h3>
+              <h3 className="text-xs font-medium text-gray-900">{experience.title}</h3>
               <span className="text-xs text-gray-400">•</span>
-              <span className="text-sm text-gray-600">{experience.company}</span>
+              <span className="text-xs text-gray-600">{experience.company}</span>
             </div>
             <p className="text-xs text-gray-500">{experience.period}</p>
           </div>
@@ -55,7 +55,7 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({ experience, isOpen, onT
         <div className="pt-2 pb-4 pl-0">
           <ul className="space-y-2">
             {experience.points.map((point, index) => (
-              <li key={index} className="text-sm text-gray-600 flex items-start leading-relaxed">
+              <li key={index} className="text-xs text-gray-600 flex items-start leading-relaxed">
                 <span className="mr-2.5 text-gray-400 mt-0.5">•</span>
                 <span>{point}</span>
               </li>
@@ -82,7 +82,7 @@ const Experience: React.FC = () => {
 
   return (
     <section className="w-full py-4 px-4 border-t border-gray-200 pb-8">
-      <h2 className="text-base font-bold">Experience</h2>
+      <h2 className="text-sm font-bold">Experience</h2>
       <p className="text-gray-500 dark:text-gray-400 mb-2 text-xs">
         My professional journey and key achievements.
       </p>

@@ -21,8 +21,8 @@ export default function Home() {
                 className="w-full h-full object-cover object-top"
               />
             </div>
-            <p className="text-sm">
-              Hi I&apos;m {" "}
+            <p className="text-xs">
+              Hi I&apos;m Ram {" "}
               <LinkPreview href="https://www.instagram.com/visualsofalex11/">visualsofalex11</LinkPreview>
               , a software engineer, DJ, writer, and minimalist based in Amsterdam, The Netherlands.
             </p>

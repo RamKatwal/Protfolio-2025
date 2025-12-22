@@ -167,11 +167,11 @@ const Casestudysection: React.FC = () => {
       {/* Floating Preview Image */}
       {hoveredStudy?.previewImage && (
         <div
-          className="fixed pointer-events-none z-50 transition-all duration-200 ease-out"
+          className="fixed pointer-events-none z-[9999] transition-all duration-200 ease-out"
           style={{
-            left: `${imagePosition.x + 16}px`,
-            top: `${imagePosition.y}px`,
-            transform: 'translateY(-50%)',
+            transform: 'translateY(-10%)',
+            left: `${imagePosition.x}px`,
+            top: `${imagePosition.y - 180}px`,
             opacity: hoveredStudy ? 1 : 0,
             willChange: 'transform, opacity',
           }}
