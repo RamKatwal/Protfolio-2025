@@ -33,7 +33,7 @@ export default function Home() {
                 <p className="text-xs">
                   Hi I&apos;m Ram {" "}
                   <LinkPreview href="https://www.instagram.com/visualsofalex11/">visualsofalex11</LinkPreview>
-                  , a software engineer, DJ, writer, and minimalist based in Amsterdam, The Netherlands.
+                  , a designer based in Nepal.
                 </p>
               </div>
             </ScrollReveal>

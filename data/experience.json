@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "title": "Senior Frontend Software Engineer",
+    "title": "Designer",
     "company": "heycar",
     "period": "2022 - Present",
     "points": [
@@ -13,7 +13,7 @@
   },
   {
     "id": 2,
-    "title": "Frontend Software Engineer",
+    "title": "Designer",
     "company": "Yemeksepeti",
     "period": "2020 - 2022",
     "points": [
@@ -22,42 +22,5 @@
       "Optimized bundle size and improved page load times",
       "Worked on cross-functional teams to deliver high-quality products"
     ]
-  },
-  {
-    "id": 3,
-    "title": "Fullstack Software Engineer",
-    "company": "Sistas",
-    "period": "2019 - 2020",
-    "points": [
-      "Built full-stack applications using Node.js and React",
-      "Designed and implemented RESTful APIs",
-      "Managed database schemas and optimized queries",
-      "Deployed applications to cloud infrastructure"
-    ]
-  },
-  {
-    "id": 4,
-    "title": "Mobile Developer",
-    "company": "Tanbula",
-    "period": "2018 - 2019",
-    "points": [
-      "Developed mobile applications using React Native",
-      "Implemented native modules for iOS and Android",
-      "Collaborated with designers to create intuitive user interfaces",
-      "Maintained and updated existing mobile applications"
-    ]
-  },
-  {
-    "id": 5,
-    "title": "Specialist",
-    "company": "Apple",
-    "period": "2016 - 2018",
-    "points": [
-      "Provided technical support and customer service",
-      "Troubleshot hardware and software issues",
-      "Educated customers on Apple products and services",
-      "Maintained high customer satisfaction ratings"
-    ]
   }
 ]
-
