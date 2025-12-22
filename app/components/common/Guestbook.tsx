@@ -328,8 +328,8 @@ const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, onClose 
         </Button>
       </div>
 
-      {/* Messages - Scrollable */}
-      <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4 min-h-0 pb-0">
+      {/* Messages - Scrollable with padding for form */}
+      <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4 min-h-0 pb-32 md:pb-0">
         {error && (
           <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
             <p className="text-xs text-red-600">{error}</p>
@@ -367,8 +367,12 @@ const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, onClose 
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input Form - Progressive Disclosure - Sticky at bottom */}
-      <div className="border-t border-gray-200 p-3 bg-white flex-shrink-0 sticky bottom-0 z-10">
+      {/* Input Form - Progressive Disclosure - Fixed at bottom on mobile */}
+      <div className={`border-t border-gray-200 p-3 bg-white flex-shrink-0 z-10 ${
+        isMobileOverlay 
+          ? 'fixed bottom-0 left-0 right-0' 
+          : 'sticky bottom-0'
+      }`}>
         <form onSubmit={handleSubmit} className="space-y-2">
           {/* Message Input - Always visible */}
           <Textarea
@@ -377,6 +381,14 @@ const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, onClose 
             placeholder="Leave a message..."
             className="text-xs resize-none transition-all duration-200 min-h-[60px]"
             rows={showNameInput ? 1 : 2}
+            onFocus={(e) => {
+              // Scroll textarea into view on mobile when focused
+              if (isMobileOverlay) {
+                setTimeout(() => {
+                  e.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 300);
+              }
+            }}
             onKeyDown={(e) => {
               // Allow Enter+Shift for new line, but Enter alone submits if both fields are filled
               if (e.key === 'Enter' && !e.shiftKey && name.trim() && message.trim()) {
@@ -396,6 +408,14 @@ const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, onClose 
                 value={name}
                 onChange={handleNameChange}
                 className="h-8 text-xs bg-white border-gray-200 focus-visible:ring-gray-300 focus-visible:ring-1 transition-all duration-200"
+                onFocus={(e) => {
+                  // Scroll input into view on mobile when focused
+                  if (isMobileOverlay) {
+                    setTimeout(() => {
+                      e.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 300);
+                  }
+                }}
                 onKeyDown={(e) => {
                   // Submit on Enter when name is filled
                   if (e.key === 'Enter' && name.trim() && message.trim()) {
