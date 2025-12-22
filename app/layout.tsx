@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Leftbar from "./components/common/Leftbar";
-import Header from "./components/common/header";
+import LayoutClient from "./components/common/LayoutClient";
 import { TooltipProvider } from "./components/ui/tooltip";
 
 const inter = Inter({
@@ -27,11 +26,9 @@ export default function RootLayout({
         className={`${inter.variable} antialiased overflow-x-hidden`}
       >
         <TooltipProvider>
-          <Leftbar />
-          <Header />
-          <main className="ml-50 mt-14 w-[calc(100%-240px)]">
+          <LayoutClient>
             {children}
-          </main>
+          </LayoutClient>
         </TooltipProvider>
       </body>
     </html>

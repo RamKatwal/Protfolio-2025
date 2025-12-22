@@ -41,6 +41,40 @@ const config: Config = {
         tight: "-0.01em",
         normal: "0",
       },
+      keyframes: {
+        borderTop: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(500%)' },
+        },
+        borderRight: {
+          '0%': { transform: 'translateY(-100%)' },
+          '100%': { transform: 'translateY(500%)' },
+        },
+        borderBottom: {
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(-500%)' },
+        },
+        borderLeft: {
+          '0%': { transform: 'translateY(100%)' },
+          '100%': { transform: 'translateY(-500%)' },
+        },
+        shimmer: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(200%)' },
+        },
+        shimmerSlide: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
+        },
+      },
+      animation: {
+        borderTop: 'borderTop 2.5s linear infinite',
+        borderRight: 'borderRight 2.5s linear infinite 0.625s',
+        borderBottom: 'borderBottom 2.5s linear infinite 1.25s',
+        borderLeft: 'borderLeft 2.5s linear infinite 1.875s',
+        shimmer: 'shimmer 2s ease-in-out infinite',
+        shimmerSlide: 'shimmerSlide 3s linear infinite',
+      },
     },
   },
   plugins: [tailwindcssAnimate, typography],

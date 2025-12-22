@@ -22,7 +22,7 @@ export default function AboutPage() {
         {/* Main Heading */}
         <div className="flex flex-col gap-4">
           <h1 className="text-md font-bold text-gray-900 leading-tight">
-            Hey there! I&apos;m <LinkPreview href="https://www.instagram.com/visualsofalex11/">visualsofalex11</LinkPreview>, a software engineer, DJ, writer, and minimalist based in Amsterdam, The Netherlands.
+            Hey there! I&apos;m <LinkPreview href="https://www.instagram.com/visualsofalex11/">visualsofalex11</LinkPreview>, a designer, writer, and minimalist based in Amsterdam, The Netherlands.
           </h1>
         </div>
 

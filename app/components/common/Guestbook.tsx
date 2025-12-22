@@ -16,8 +16,13 @@ interface Message {
   timestamp: string;
 }
 
-const Guestbook: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+interface GuestbookProps {
+  isMobileOverlay?: boolean;
+  onClose?: () => void;
+}
+
+const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, onClose }) => {
+  const [isOpen, setIsOpen] = useState(isMobileOverlay);
   const [messages, setMessages] = useState<Message[]>([]);
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
@@ -30,6 +35,13 @@ const Guestbook: React.FC = () => {
   const bookRef = useRef<HTMLDivElement>(null);
   const nameInputRef = useRef<HTMLInputElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  // Update isOpen when isMobileOverlay changes
+  useEffect(() => {
+    if (isMobileOverlay) {
+      setIsOpen(true);
+    }
+  }, [isMobileOverlay]);
 
   // Transform Supabase data to Message interface helper
   const transformMessage = (item: {
@@ -248,7 +260,8 @@ const Guestbook: React.FC = () => {
     }
   };
 
-  if (!isOpen) {
+  // For mobile overlay, always show content, skip the closed state
+  if (!isOpen && !isMobileOverlay) {
     return (
       <ScrollReveal delay={300}>
         <div className="w-full h-[calc(100vh-56px)] bg-white flex flex-col items-center justify-center relative group cursor-pointer" onClick={() => setIsOpen(true)}>
@@ -288,8 +301,16 @@ const Guestbook: React.FC = () => {
     );
   }
 
+  const handleClose = () => {
+    if (isMobileOverlay && onClose) {
+      onClose();
+    } else {
+      setIsOpen(false);
+    }
+  };
+
   return (
-    <div className="w-full h-[calc(100vh-56px)] bg-white flex flex-col border-l border-gray-200 overflow-hidden">
+    <div className={`w-full ${isMobileOverlay ? 'h-screen' : 'h-[calc(100vh-56px)]'} bg-white flex flex-col ${isMobileOverlay ? '' : 'border-l border-gray-200'} overflow-hidden`}>
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
         <div className="flex items-center gap-2">
@@ -300,7 +321,7 @@ const Guestbook: React.FC = () => {
         <Button
           variant="ghost"
           size="icon"
-          onClick={() => setIsOpen(false)}
+          onClick={handleClose}
           className="h-8 w-8"
         >
           <X className="w-4 h-4" />
