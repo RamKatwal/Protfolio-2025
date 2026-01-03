@@ -1,25 +1,15 @@
 [
   {
     "id": 1,
-    "title": "Linear",
-    "description": "The issue tracking tool you'll enjoy using.",
+    "title": "AMS",
+    "description": "Send bulk invoices to residents in societies",
     "logo": "/linear.svg",
-    "previewImage": "/images/atlar-dashboard.jpg",
+    "previewImage": "/images/Casestudy_aitchomes.png",
 
     "links": [
-      { "label": "Case Study", "url": "/case-studies/linear" },
-      { "label": "Live Site", "url": "https://linear.app" }
-    ]
-  },
-  {
-    "id": 2,
-    "title": "Cursor",
-    "description": "The AI-first code editor built for pair programming.",
-    "logo": "/cursor.svg",
-    "previewImage": "/images/atlar-dashboard.jpg",
-    "links": [
-      { "label": "Case Study", "url": "/case-studies/cursor" },
-      { "label": "Live Site", "url": "https://cursor.sh" }
+      { "label": "Case Study", "url": "https://www.figma.com/proto/xpoYzdZIjx22jO3NjcCCjY/Presentation?node-id=2031-34801&viewport=470%2C166%2C0.19&t=AKYIMnMS0zWi85df-0&scaling=contain&content-scaling=fixed&starting-point-node-id=2031%3A34801" },
+      { "label": "Live Site", "url": "https://linear.app" },
+      {"label": "Notion", "url": "https://www.notion.so/ams-software/AMS-Software-1-0-0-81082136435440e989683a0629672915"}
     ]
   }
 ]

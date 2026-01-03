@@ -1,8 +1,8 @@
 [
   {
     "id": 1,
-    "title": "Designer",
-    "company": "heycar",
+    "title": "Design Engineer",
+    "company": "GCS",
     "period": "2022 - Present",
     "points": [
       "Led frontend architecture decisions and implemented scalable React components",

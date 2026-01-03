@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CaseStudyData } from '@/types'; 
 import caseStudies from '@/data/caseStudies.json';
 import { Badge } from '@/app/components/ui/badge';
 import Link from 'next/link';
-import Image from 'next/image'; 
+import Image from 'next/image';
+import { PasswordModal } from '@/app/components/ui/password-modal'; 
 
 // Import JSON data
 // Use a type assertion to inform TypeScript about the structure of the imported JSON
@@ -23,9 +24,141 @@ interface CaseStudyLinkBadgeProps {
 const CaseStudyLinkBadge: React.FC<CaseStudyLinkBadgeProps> = ({ label, url }) => {
   const variant = 'default'; 
   const spacingClass = 'mr-2 mb-2'; // Tailwind spacing for layout
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  const STORAGE_KEY = 'case_study_authenticated';
+  const EXPECTED_PASSWORD = process.env.NEXT_PUBLIC_CASE_STUDY_PASSWORD || '';
+
+  // Helper function to check authentication status
+  const checkAuthentication = (): boolean => {
+    if (typeof window === 'undefined') return false;
+    try {
+      const authStatus = localStorage.getItem(STORAGE_KEY);
+      return authStatus === 'true';
+    } catch (error) {
+      console.error('Error reading from localStorage:', error);
+      return false;
+    }
+  };
+
+  // Check localStorage on mount and update state
+  useEffect(() => {
+    const isAuth = checkAuthentication();
+    setIsAuthenticated(isAuth);
+  }, []);
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    
+    // Only protect "Case Study" links
+    if (label !== 'Case Study') {
+      // For non-case study links, navigate directly
+      if (url.startsWith('/')) {
+        window.location.href = url;
+      } else {
+        window.open(url, '_blank', 'noopener,noreferrer');
+      }
+      return;
+    }
+
+    // For "Case Study" links, check authentication directly from localStorage
+    // This ensures we always have the latest authentication status
+    const isAuth = checkAuthentication();
+    
+    // Update state to reflect current authentication status
+    setIsAuthenticated(isAuth);
+    
+    if (isAuth) {
+      // Already authenticated, redirect immediately
+      if (url.startsWith('/')) {
+        window.location.href = url;
+      } else {
+        window.open(url, '_blank', 'noopener,noreferrer');
+      }
+    } else {
+      // Not authenticated, show password modal
+      setIsModalOpen(true);
+      setErrorMessage('');
+    }
+  };
+
+  const handlePasswordSubmit = (passwordInput: string) => {
+    if (!EXPECTED_PASSWORD) {
+      setErrorMessage('Password protection is not configured. Please contact the administrator.');
+      return;
+    }
+
+    if (passwordInput === EXPECTED_PASSWORD) {
+      // Password correct - store authentication and redirect
+      if (typeof window !== 'undefined') {
+        try {
+          // Set authentication in localStorage
+          localStorage.setItem(STORAGE_KEY, 'true');
+          
+          // Verify it was saved correctly
+          const saved = localStorage.getItem(STORAGE_KEY);
+          if (saved !== 'true') {
+            setErrorMessage('Failed to save authentication. Please try again.');
+            return;
+          }
+          
+          // Update state immediately
+          setIsAuthenticated(true);
+          setIsModalOpen(false);
+          setErrorMessage('');
+          
+          // Redirect to the URL immediately
+          // localStorage.setItem is synchronous, so it's safe to redirect right away
+          if (url.startsWith('/')) {
+            window.location.href = url;
+          } else {
+            window.open(url, '_blank', 'noopener,noreferrer');
+          }
+        } catch (error) {
+          console.error('Error saving authentication:', error);
+          setErrorMessage('Failed to save authentication. Please try again.');
+        }
+      }
+    } else {
+      // Password incorrect
+      setErrorMessage('Incorrect password. Please try again.');
+    }
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    setErrorMessage('');
+  };
+
+  // For "Case Study" links, render a button instead of Link
+  if (label === 'Case Study') {
+    return (
+      <>
+        <button
+          onClick={handleClick}
+          className="inline-block"
+        >
+          <Badge 
+            variant={variant} 
+            className={`${spacingClass} cursor-pointer hover:bg-gray-50 transition-colors`}
+          >
+            {label}
+          </Badge>
+        </button>
+        <PasswordModal
+          isOpen={isModalOpen}
+          onClose={handleModalClose}
+          onSuccess={handlePasswordSubmit}
+          errorMessage={errorMessage}
+        />
+      </>
+    );
+  }
+
+  // For other links, use the original Link component
   return (
-    // Use Next.js Link component for client-side navigation
     <Link 
       href={url}
       target={url.startsWith('/') ? '_self' : '_blank'} 
