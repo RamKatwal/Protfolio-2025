@@ -40,15 +40,17 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({ experience, isOpen, onT
         </button>
         
         {/* Logo */}
-        <div className="flex-shrink-0 w-10 h-10 rounded-lg overflow-hidden border border-gray-200 flex items-center justify-center bg-gray-50 mt-3">
-          <Image 
-            src="/linear.svg" 
-            alt={`${experience.company} logo`} 
-            width={40}
-            height={40}
-            className="w-full h-full object-contain p-1.5"
-          />
-        </div>
+        {experience.logo && (
+          <div className="flex-shrink-0 w-10 h-10 rounded-lg overflow-hidden border border-gray-200 flex items-center justify-center bg-gray-50 mt-3">
+            <Image 
+              src={experience.logo} 
+              alt={`${experience.company} logo`} 
+              width={40}
+              height={40}
+              className="w-full h-full object-contain p-1.5"
+            />
+          </div>
+        )}
       </div>
       
       {isOpen && (

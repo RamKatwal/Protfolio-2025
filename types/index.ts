@@ -35,4 +35,5 @@ export interface ExperienceData {
   company: string;
   period: string;
   points: string[];
+  logo?: string; // Optional logo image path
 }

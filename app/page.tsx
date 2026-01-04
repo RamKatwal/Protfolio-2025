@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Casestudysection from "@/app/components/Reusable/casestudysection";
 import Experience from "@/app/components/common/Experience";
+import GitHubContributions from "@/app/components/common/GitHubContributions";
 import Guestbook from "@/app/components/common/Guestbook";
 import ScrollReveal from "@/app/components/common/ScrollReveal";
 import { LinkPreview }   from "@/app/components/ui/link-preview";
@@ -44,6 +45,10 @@ export default function Home() {
             
             <ScrollReveal delay={200}>
               <Experience />
+            </ScrollReveal>
+            
+            <ScrollReveal delay={300}>
+              <GitHubContributions username="RamKatwal" />
             </ScrollReveal>
           </div>
         </div>

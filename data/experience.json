@@ -3,19 +3,19 @@
     "id": 1,
     "title": "Design Engineer",
     "company": "GCS",
-    "period": "2022 - Present",
+    "period": "Sep 2025 - Present",
+    "logo": "/Images/GCSlogo.png",
     "points": [
-      "Led frontend architecture decisions and implemented scalable React components",
-      "Improved application performance by 40% through code optimization and lazy loading",
-      "Mentored junior developers and conducted code reviews",
-      "Collaborated with design and product teams to deliver user-centric features"
+      "Updated HTML, CSS, and JavaScript to revamp the UI of the MIS (Management Information System).",
+      "Redesigned layout and styling to improve user experience (better responsiveness, cleaner visual hierarchy, updated UI components)."
     ]
   },
   {
     "id": 2,
     "title": "Designer",
-    "company": "Yemeksepeti",
-    "period": "2020 - 2022",
+    "company": "AITC",
+    "period": "August 2022 - Present",
+    "logo": "/Images/aitclogo.png",
     "points": [
       "Developed responsive web applications using React and TypeScript",
       "Implemented state management solutions using Redux",

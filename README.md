@@ -4,13 +4,15 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, create a `.env.local` file in the root directory and add the following environment variable:
+First, create a `.env.local` file in the root directory and add the following environment variables:
 
 ```env
 NEXT_PUBLIC_CASE_STUDY_PASSWORD=your_password_here
+NEXT_PUBLIC_GITHUB_USERNAME=your_github_username
 ```
 
-Replace `your_password_here` with your desired password for case study links.
+- Replace `your_password_here` with your desired password for case study links.
+- Replace `your_github_username` with your GitHub username to display your contribution chart.
 
 Then, run the development server:
 
