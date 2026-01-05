@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import LayoutClient from "./components/common/LayoutClient";
 import { TooltipProvider } from "./components/ui/tooltip";
+import { Analytics } from "@vercel/analytics/next"
 
 const inter = Inter({
   variable: "--font-inter",
@@ -28,6 +29,7 @@ export default function RootLayout({
         <TooltipProvider>
           <LayoutClient>
             {children}
+            <Analytics />
           </LayoutClient>
         </TooltipProvider>
       </body>

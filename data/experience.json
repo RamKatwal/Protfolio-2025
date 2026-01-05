@@ -4,7 +4,7 @@
     "title": "Design Engineer",
     "company": "GCS",
     "period": "Sep 2025 - Present",
-    "logo": "/Images/GCSlogo.png",
+    "logo": "/images/GCSlogo.png",
     "points": [
       "Updated HTML, CSS, and JavaScript to revamp the UI of the MIS (Management Information System).",
       "Redesigned layout and styling to improve user experience (better responsiveness, cleaner visual hierarchy, updated UI components)."
@@ -15,7 +15,7 @@
     "title": "Designer",
     "company": "AITC",
     "period": "August 2022 - Present",
-    "logo": "/Images/aitclogo.png",
+    "logo": "/images/aitclogo.png",
     "points": [
       "Developed responsive web applications using React and TypeScript",
       "Implemented state management solutions using Redux",
