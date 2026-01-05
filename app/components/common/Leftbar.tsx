@@ -91,9 +91,10 @@ const Leftbar: React.FC<LeftbarProps> = ({ isOpen, onClose }) => {
         </div>
 
         {/* Desktop title */}
-        <p className="hidden md:block w-full font-semibold text-sm text-zinc-950 px-4 py-3.5 border-b border-zinc-200">
+        <p className="hidden md:flex w-full font-semibold text-sm text-zinc-950 px-4 h-12.5 border-b border-zinc-200 items-center">
           Ram Katwal
         </p>
+
 
         <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 w-full px-2 py-2">
           <NavItem icon={<HouseIcon />} label="Home" href='/' isActive={pathname === '/'} onNavigate={onClose} />

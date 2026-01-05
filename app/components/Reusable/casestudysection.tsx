@@ -210,6 +210,21 @@ const CaseStudyItem: React.FC<CaseStudyItemProps> = ({ study, onHover, isHovered
       isHovered ? 'bg-gray-50/50 rounded-lg -mx-2 px-2 shadow-sm' : ''
     }`}>
       <div className="flex gap-3">
+        {/* Logo */}
+        {study.logo && (
+          <div className={`flex-shrink-0 w-10 h-10 rounded-lg overflow-hidden border flex items-center justify-center transition-all duration-200 ${
+            isHovered ? 'border-gray-300 bg-gray-100 shadow-sm scale-105' : 'border-gray-200 bg-gray-50'
+          }`}>
+            <Image 
+              src={study.logo} 
+              alt={`${study.title} logo`} 
+              width={40}
+              height={40}
+              className="w-full h-full object-contain p-1.5 transition-transform duration-200"
+            />
+          </div>
+        )}
+        
         {/* Content */}
         <div className="flex-1 min-w-0">
           {/* Title and Description Container */}
@@ -245,21 +260,6 @@ const CaseStudyItem: React.FC<CaseStudyItemProps> = ({ study, onHover, isHovered
             ))}
           </div>
         </div>
-        
-        {/* Logo */}
-        {study.logo && (
-          <div className={`flex-shrink-0 w-10 h-10 rounded-lg overflow-hidden border flex items-center justify-center transition-all duration-200 ${
-            isHovered ? 'border-gray-300 bg-gray-100 shadow-sm scale-105' : 'border-gray-200 bg-gray-50'
-          }`}>
-            <Image 
-              src={study.logo} 
-              alt={`${study.title} logo`} 
-              width={40}
-              height={40}
-              className="w-full h-full object-contain p-1.5 transition-transform duration-200"
-            />
-          </div>
-        )}
       </div>
     </div>
   );

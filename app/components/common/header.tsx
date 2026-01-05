@@ -34,7 +34,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
         {/* Social Media Icons */}
         <div className="flex items-center gap-2 md:gap-3">
           <Link 
-            href="https://twitter.com" 
+            href="https://x.com/visualsofalex11" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-gray-600 hover:text-gray-900 transition-colors"
@@ -43,7 +43,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
             <FaXTwitter size={16} className="md:w-[18px] md:h-[18px]" />
           </Link>
           <Link 
-            href="https://github.com" 
+            href="https://github.com/RamKatwal" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-gray-600 hover:text-gray-900 transition-colors"
@@ -52,7 +52,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
             <FaGithub size={16} className="md:w-[18px] md:h-[18px]" />
           </Link>
           <Link 
-            href="https://linkedin.com" 
+            href="https://www.linkedin.com/in/ram-katwal/" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-gray-600 hover:text-gray-900 transition-colors"

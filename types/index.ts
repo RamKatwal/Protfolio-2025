@@ -37,3 +37,11 @@ export interface ExperienceData {
   points: string[];
   logo?: string; // Optional logo image path
 }
+
+export interface PersonalProjectData {
+  id: number;
+  title: string;
+  description?: string;
+  url?: string; // Optional URL for the project
+  logo?: string; // Optional logo image path
+}

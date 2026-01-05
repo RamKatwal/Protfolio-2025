@@ -18,6 +18,19 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({ experience, isOpen, onT
   return (
     <div className="border-b border-gray-200 last:border-b-0">
       <div className="flex gap-3 items-start">
+        {/* Logo */}
+        {experience.logo && (
+          <div className="flex-shrink-0 w-10 h-10 rounded-lg overflow-hidden border border-gray-200 flex items-center justify-center bg-gray-50 mt-3">
+            <Image 
+              src={experience.logo} 
+              alt={`${experience.company} logo`} 
+              width={40}
+              height={40}
+              className="w-full h-full object-contain p-1.5"
+            />
+          </div>
+        )}
+        
         <button
           onClick={onToggle}
           className="flex-1 flex items-center py-3 px-0 hover:bg-transparent transition-colors group cursor-pointer"
@@ -38,19 +51,6 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({ experience, isOpen, onT
             <ChevronRightIcon />
           </div>
         </button>
-        
-        {/* Logo */}
-        {experience.logo && (
-          <div className="flex-shrink-0 w-10 h-10 rounded-lg overflow-hidden border border-gray-200 flex items-center justify-center bg-gray-50 mt-3">
-            <Image 
-              src={experience.logo} 
-              alt={`${experience.company} logo`} 
-              width={40}
-              height={40}
-              className="w-full h-full object-contain p-1.5"
-            />
-          </div>
-        )}
       </div>
       
       {isOpen && (

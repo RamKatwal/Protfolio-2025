@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Casestudysection from "@/app/components/Reusable/casestudysection";
 import Experience from "@/app/components/common/Experience";
+import PersonalProjects from "@/app/components/common/PersonalProjects";
 import GitHubContributions from "@/app/components/common/GitHubContributions";
 import Guestbook from "@/app/components/common/Guestbook";
 import ScrollReveal from "@/app/components/common/ScrollReveal";
@@ -18,24 +19,32 @@ export default function Home() {
     <>
       <div className="w-full h-[calc(100vh-56px)] flex flex-col md:flex-row overflow-hidden">
         {/* Main Content */}
-        <div className="flex-1 h-full bg-white flex flex-col items-start border-r border-gray-200 overflow-y-auto md:overflow-hidden overscroll-contain scroll-smooth">
+        <div className="flex-1 h-full bg-white flex flex-col items-start border-r border-gray-200 overflow-y-auto overscroll-contain scroll-smooth thin-scrollbar">
           <div className="w-full flex flex-col">
             <ScrollReveal delay={0}>
-              <div className="flex flex-col items-start px-4 py-2 gap-4"> 
-                <div className="w-16 h-16 rounded-xl overflow-hidden border border-gray-200">
-                  <Image 
-                    src="/images/ramlogo.png" 
-                    alt="Profile" 
-                    width={64}
-                    height={64}
-                    className="w-full h-full object-cover object-top"
-                  />
+              <div className="w-full pt-2 pb-4 px-4">
+                <div className="flex gap-3 items-top">
+                  {/* Logo */}
+                  <div className="flex-shrink-0 w-10 h-10 rounded-lg overflow-hidden border border-gray-200 flex items-center justify-center bg-gray-50">
+                    <Image 
+                      src="/images/ramlogo.png" 
+                      alt="Profile" 
+                      width={40}
+                      height={40}
+                      className="w-full h-full object-contain p-1.5"
+                    />
+                  </div>
+                  
+                  {/* Text Content */}
+                  <div className="flex-1 line-height-1">
+                    <p className="text-xs text-gray-900">
+                      Hi I&apos;m Ram {" "}
+                      <LinkPreview href="https://www.instagram.com/visualsofalex11/">visualsofalex11</LinkPreview>
+                      , a designer based in Nepal. <br />
+                      Designing thoughtful interfaces. Building polished digital products. Always exploring the tiny details that bring experiences to life.
+                    </p>
+                  </div>
                 </div>
-                <p className="text-xs">
-                  Hi I&apos;m Ram {" "}
-                  <LinkPreview href="https://www.instagram.com/visualsofalex11/">visualsofalex11</LinkPreview>
-                  , a designer based in Nepal.
-                </p>
               </div>
             </ScrollReveal>
             
@@ -45,6 +54,10 @@ export default function Home() {
             
             <ScrollReveal delay={200}>
               <Experience />
+            </ScrollReveal>
+            
+            <ScrollReveal delay={250}>
+              <PersonalProjects />
             </ScrollReveal>
             
             <ScrollReveal delay={300}>
