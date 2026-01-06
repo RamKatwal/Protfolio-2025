@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Search, Menu } from 'lucide-react';
-import { FaXTwitter, FaGithub, FaLinkedin } from 'react-icons/fa6';
+import { FaXTwitter, FaGithub, FaLinkedin, FaBehance, FaDribbble } from 'react-icons/fa6';
 import Link from 'next/link';
 
 interface HeaderProps {
@@ -33,7 +33,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
         
         {/* Social Media Icons */}
         <div className="flex items-center gap-2 md:gap-3">
-          <Link 
+        <Link 
             href="https://x.com/visualsofalex11" 
             target="_blank" 
             rel="noopener noreferrer"
@@ -41,6 +41,24 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
             aria-label="X (Twitter)"
           >
             <FaXTwitter size={16} className="md:w-[18px] md:h-[18px]" />
+          </Link>
+          <Link
+            href="https://www.behance.net/RamKatwal"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-600 hover:text-gray-900 transition-colors"
+            aria-label="Behance"
+          >
+            <FaBehance size={16} className="md:w-[18px] md:h-[18px]" />
+          </Link>
+          <Link
+            href="https://dribbble.com/RamKatwal"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-600 hover:text-gray-900 transition-colors"
+            aria-label="Dribbble"
+          >
+            <FaDribbble size={16} className="md:w-[18px] md:h-[18px]" />
           </Link>
           <Link 
             href="https://github.com/RamKatwal" 
@@ -51,6 +69,8 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
           >
             <FaGithub size={16} className="md:w-[18px] md:h-[18px]" />
           </Link>
+          
+
           <Link 
             href="https://www.linkedin.com/in/ram-katwal/" 
             target="_blank" 

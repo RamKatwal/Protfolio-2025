@@ -22,5 +22,16 @@
       "Optimized bundle size and improved page load times",
       "Worked on cross-functional teams to deliver high-quality products"
     ]
+  },
+
+  {
+    "id": 3,
+    "title": "Design Mentor",
+    "company": "TechManthan",
+    "period": "May 2025 - Aug 2025",
+    "logo": "/images/techmanthanlogo.png",
+    "points": [
+      "Mentored interns in Tech Manthan’s flagship “ARC 2025” 90‑day UI/UX Design track"
+    ]
   }
 ]

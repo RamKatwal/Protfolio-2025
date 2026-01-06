@@ -8,7 +8,7 @@
 
     "links": [
       { "label": "Case Study", "url": "https://www.figma.com/proto/xpoYzdZIjx22jO3NjcCCjY/Presentation?node-id=2031-34801&viewport=470%2C166%2C0.19&t=AKYIMnMS0zWi85df-0&scaling=contain&content-scaling=fixed&starting-point-node-id=2031%3A34801" },
-      { "label": "Live Site", "url": "https://linear.app" },
+      { "label": "Live Site", "url": "https://societypanel.aitc.ai/login" },
       {"label": "Notion", "url": "https://www.notion.so/ams-software/AMS-Software-1-0-0-81082136435440e989683a0629672915"}
     ]
   }

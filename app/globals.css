@@ -161,3 +161,23 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Infinite projects marquee animation */
+.marquee-content {
+  animation: projects-marquee 100s linear infinite;
+}
+
+.marquee-content:hover {
+  animation-play-state: paused;
+}
+
+@keyframes projects-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* Move exactly 50% (one set out of two) to create seamless infinite loop */
+    /* When the first set moves completely off-screen, the second identical set is in the exact same position */
+    transform: translateX(-50%);
+  }
+}

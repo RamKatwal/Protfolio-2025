@@ -1,0 +1,46 @@
+[
+  
+  {
+    "id": 1,
+    "title": "AMS",
+    "description": "Send bulk invoices to residents in societies",
+    "url": "https://play.google.com/store/apps/details?id=com.aitchomes.aitc&pcampaignid=web_share",
+    "logo": "/images/aitchomeslogo.png"
+  },
+  {
+    "id": 2,
+    "title": "ASUH MIS",
+    "description": "Management Information System for GCS",
+    "url": "#",
+    "logo": "/images/GCSlogo.png"
+  },
+  {
+    "id": 3,
+    "title": "Annapurna Arts",
+    "description": "A curated Notion database of essential design resources for UI/UX designers",
+    "url": "https://annapurnaart.com/",
+    "logo": "/images/annapurnaartlogo.png"
+  },
+  {
+    "id": 4,
+    "title": "Postaam",
+    "description": "Design and development platform",
+    "url": "https://play.google.com/store/apps/details?id=com.upliftsolutions.postaam&hl=en",
+    "logo": "/images/postaam.png"
+  },
+  {
+    "id": 5,
+    "title": "AitcHomes Guard",
+    "description": "Technology platform",
+    "url": "https://play.google.com/store/apps/details?id=com.aitc_homes_guard.aitc&hl=en",
+    "logo": "/images/aitchomesguard.png"
+  },
+  {
+    "id": 5,
+    "title": "Huskey App",
+    "description": "Technology platform",
+    "url": "#",
+    "logo": "/images/Huskey App.png"
+  }
+]
+

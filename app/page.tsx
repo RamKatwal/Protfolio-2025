@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Casestudysection from "@/app/components/Reusable/casestudysection";
 import Experience from "@/app/components/common/Experience";
+import ProjectsMarquee from "@/app/components/common/ProjectsMarquee";
 import PersonalProjects from "@/app/components/common/PersonalProjects";
 import GitHubContributions from "@/app/components/common/GitHubContributions";
 import Guestbook from "@/app/components/common/Guestbook";
@@ -39,7 +40,7 @@ export default function Home() {
                   <div className="flex-1 line-height-1">
                     <p className="text-xs text-gray-900">
                       Hi I&apos;m Ram {" "}
-                      <LinkPreview href="https://www.instagram.com/visualsofalex11/">visualsofalex11</LinkPreview>
+                      <LinkPreview href="https://www.instagram.com/design.alex11/">visualsofalex11</LinkPreview>
                       , a designer based in Nepal. <br />
                       Designing thoughtful interfaces. Building polished digital products. Always exploring the tiny details that bring experiences to life.
                     </p>
@@ -51,7 +52,11 @@ export default function Home() {
             <ScrollReveal delay={100}>
               <Casestudysection />
             </ScrollReveal>
-            
+
+            <ScrollReveal delay={150}>
+              <ProjectsMarquee />
+            </ScrollReveal>
+
             <ScrollReveal delay={200}>
               <Experience />
             </ScrollReveal>
