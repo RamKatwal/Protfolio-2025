@@ -16,12 +16,12 @@
   {
     "id": 2,
     "title": "Design System for ASUH MIS",
-    "description": "Creating a proper design system for MIS",
+    "description": "Creating a scalable design system for MIS",
     "logo": "/images/ASUHMIS logo.png",
     "previewImage": "/images/Casestudy_aitchomes.png",
 
     "links": [
-      { "label": "Figma Link", "url": "https://societypanel.aitc.ai/login" }
+      { "label": "Figma Link", "url": "https://www.figma.com/design/fCE7X61Bnn5lLq4qLjsjCN/ASUH-MIS-Design-System?node-id=0-1&t=gOSWTsX1ShxkGYxF-1" }
     ]
   },
 
