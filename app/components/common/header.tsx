@@ -32,53 +32,53 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
         </div>
         
         {/* Social Media Icons */}
-        <div className="flex items-center gap-2 md:gap-3">
+        <div className="flex items-center gap-1 md:gap-4">
         <Link 
             href="https://x.com/visualsofalex11" 
-            target="_blank" 
+            target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-600 hover:text-gray-900 transition-colors"
+            className="text-gray-600 hover:text-gray-900 transition-colors p-2 md:p-0"
             aria-label="X (Twitter)"
           >
-            <FaXTwitter size={16} className="md:w-[18px] md:h-[18px]" />
+            <FaXTwitter size={20} className="md:w-[18px] md:h-[18px]" />
           </Link>
           <Link
             href="https://www.behance.net/RamKatwal"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-600 hover:text-gray-900 transition-colors"
+            className="text-gray-600 hover:text-gray-900 transition-colors p-2 md:p-0"
             aria-label="Behance"
           >
-            <FaBehance size={16} className="md:w-[18px] md:h-[18px]" />
+            <FaBehance size={20} className="md:w-[18px] md:h-[18px]" />
           </Link>
           <Link
             href="https://dribbble.com/RamKatwal"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-600 hover:text-gray-900 transition-colors"
+            className="text-gray-600 hover:text-gray-900 transition-colors p-2 md:p-0"
             aria-label="Dribbble"
           >
-            <FaDribbble size={16} className="md:w-[18px] md:h-[18px]" />
+            <FaDribbble size={20} className="md:w-[18px] md:h-[18px]" />
           </Link>
           <Link 
             href="https://github.com/RamKatwal" 
-            target="_blank" 
+            target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-600 hover:text-gray-900 transition-colors"
+            className="text-gray-600 hover:text-gray-900 transition-colors p-2 md:p-0"
             aria-label="GitHub"
           >
-            <FaGithub size={16} className="md:w-[18px] md:h-[18px]" />
+            <FaGithub size={20} className="md:w-[18px] md:h-[18px]" />
           </Link>
           
 
           <Link 
             href="https://www.linkedin.com/in/ram-katwal/" 
-            target="_blank" 
+            target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-600 hover:text-gray-900 transition-colors"
+            className="text-gray-600 hover:text-gray-900 transition-colors p-2 md:p-0"
             aria-label="LinkedIn"
           >
-            <FaLinkedin size={16} className="md:w-[18px] md:h-[18px]" />
+            <FaLinkedin size={20} className="md:w-[18px] md:h-[18px]" />
           </Link>
         </div>
       </div>

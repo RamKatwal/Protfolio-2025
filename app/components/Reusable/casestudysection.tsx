@@ -282,7 +282,7 @@ const Casestudysection: React.FC = () => {
       
       {/* Subtext from the image */}
       <p className="text-gray-500 mb-4 text-xs">
-        Your personal playlists. Updated daily.
+        Detailed Docuemntation and  problem solving.
       </p>
       
       <div>

@@ -23,6 +23,11 @@ const ProjectsMarquee: React.FC = () => {
   const animationRef = useRef<number | null>(null);
   const lastScrollTimeRef = useRef<number>(0);
   const hasDraggedRef = useRef<boolean>(false);
+  const touchStateRef = useRef<{ isActive: boolean; startX: number; startScrollPos: number }>({
+    isActive: false,
+    startX: 0,
+    startScrollPos: 0
+  });
 
   useEffect(() => {
     const container = containerRef.current;
@@ -196,6 +201,117 @@ const ProjectsMarquee: React.FC = () => {
     };
   }, [isDragging, startX, startScrollPos, scrollPosition]);
 
+  // Handle touch-to-scroll for mobile
+  useEffect(() => {
+    const container = containerRef.current;
+    const content = contentRef.current;
+    if (!container || !content) return;
+
+    const singleSetWidth = content.scrollWidth / 2;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length !== 1) return; // Only handle single touch
+      
+      hasDraggedRef.current = false;
+      setIsDragging(true);
+      touchStateRef.current = {
+        isActive: true,
+        startX: e.touches[0].clientX,
+        startScrollPos: scrollPosition
+      };
+      setIsUserScrolling(true);
+      
+      // Clear any existing timeout
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!touchStateRef.current.isActive || e.touches.length !== 1) return;
+      
+      e.preventDefault(); // Prevent default scrolling behavior
+      
+      const touch = e.touches[0];
+      const diff = touchStateRef.current.startX - touch.clientX; // Inverted: swipe right = scroll left
+      
+      // Mark that user has dragged if movement is significant
+      if (Math.abs(diff) > 5) {
+        hasDraggedRef.current = true;
+      }
+      
+      let newPos = touchStateRef.current.startScrollPos + diff;
+      
+      // Handle infinite loop
+      if (newPos >= singleSetWidth) {
+        newPos = newPos - singleSetWidth;
+        touchStateRef.current.startScrollPos = newPos;
+        touchStateRef.current.startX = touch.clientX;
+      } else if (newPos <= -singleSetWidth) {
+        newPos = newPos + singleSetWidth;
+        touchStateRef.current.startScrollPos = newPos;
+        touchStateRef.current.startX = touch.clientX;
+      }
+      
+      setScrollPosition(newPos);
+    };
+
+    const handleTouchEnd = () => {
+      if (!touchStateRef.current.isActive) return;
+      
+      touchStateRef.current.isActive = false;
+      setIsDragging(false);
+      
+      // Reset drag flag after a short delay to allow tap events
+      setTimeout(() => {
+        hasDraggedRef.current = false;
+      }, 100);
+      
+      // Reset to automatic animation after 2 seconds of no interaction
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      
+      scrollTimeoutRef.current = setTimeout(() => {
+        setIsUserScrolling(false);
+        setScrollPosition((prev) => {
+          const normalized = prev % singleSetWidth;
+          return normalized < 0 ? normalized + singleSetWidth : normalized;
+        });
+      }, 2000);
+    };
+
+    const handleTouchCancel = () => {
+      if (touchStateRef.current.isActive) {
+        touchStateRef.current.isActive = false;
+        setIsDragging(false);
+        // Reset to automatic animation after timeout
+        if (scrollTimeoutRef.current) {
+          clearTimeout(scrollTimeoutRef.current);
+        }
+        scrollTimeoutRef.current = setTimeout(() => {
+          setIsUserScrolling(false);
+          setScrollPosition((prev) => {
+            const normalized = prev % singleSetWidth;
+            return normalized < 0 ? normalized + singleSetWidth : normalized;
+          });
+        }, 2000);
+      }
+    };
+
+    container.addEventListener('touchstart', handleTouchStart, { passive: false });
+    container.addEventListener('touchmove', handleTouchMove, { passive: false });
+    container.addEventListener('touchend', handleTouchEnd, { passive: false });
+    container.addEventListener('touchcancel', handleTouchCancel, { passive: false });
+
+    return () => {
+      container.removeEventListener('touchstart', handleTouchStart);
+      container.removeEventListener('touchmove', handleTouchMove);
+      container.removeEventListener('touchend', handleTouchEnd);
+      container.removeEventListener('touchcancel', handleTouchCancel);
+    };
+  }, [scrollPosition]);
+
   // Apply transform based on scroll position or animation
   useEffect(() => {
     const content = contentRef.current;
@@ -242,7 +358,7 @@ const ProjectsMarquee: React.FC = () => {
               href={project.url}
               target={project.url ? '_blank' : undefined}
               rel={project.url ? 'noopener noreferrer' : undefined}
-              className="group flex flex-col items-center justify-start min-w-[140px] flex-shrink-0"
+              className="group flex flex-col items-center justify-start min-w-[110px] flex-shrink-0"
               onClick={(e) => {
                 // Prevent link navigation if user was dragging
                 if (hasDraggedRef.current) {

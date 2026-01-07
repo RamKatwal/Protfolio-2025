@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "title": "AMS",
+    "title": "AMS Billing Feature",
     "description": "Send bulk invoices to residents in societies",
     "logo": "/images/aitchomeslogo.png",
     "previewImage": "/images/Casestudy_aitchomes.png",
@@ -9,7 +9,32 @@
     "links": [
       { "label": "Case Study", "url": "https://www.figma.com/proto/xpoYzdZIjx22jO3NjcCCjY/Presentation?node-id=2031-34801&viewport=470%2C166%2C0.19&t=AKYIMnMS0zWi85df-0&scaling=contain&content-scaling=fixed&starting-point-node-id=2031%3A34801" },
       { "label": "Live Site", "url": "https://societypanel.aitc.ai/login" },
-      {"label": "Notion", "url": "https://www.notion.so/ams-software/AMS-Software-1-0-0-81082136435440e989683a0629672915"}
+      {"label": "Notion", "url": "https://beneficial-ricotta-c8e.notion.site/Bill-Management-Society-1de1cc76320a8069a90ac08f398688d0?pvs=74"}
+    ]
+  },
+  
+  {
+    "id": 2,
+    "title": "Design System for ASUH MIS",
+    "description": "Creating a proper design system for MIS",
+    "logo": "/images/ASUHMIS logo.png",
+    "previewImage": "/images/Casestudy_aitchomes.png",
+
+    "links": [
+      { "label": "Figma Link", "url": "https://societypanel.aitc.ai/login" }
+    ]
+  },
+
+  {
+    "id": 3,
+    "title": "AITC Homes App",
+    "description": "An app for residents living in societies.",
+    "logo": "/images/aitchomeslogo.png",
+    "previewImage": "/images/Casestudy_aitchomes.png",
+
+    "links": [
+      { "label": "Case Study", "url": "https://beneficial-ricotta-c8e.notion.site/AITC-Homes-1c6f49cc6cbd4473997618be93fe9869" },
+      { "label": "Site", "url": "https://aitchomes.com" }
     ]
   }
 ]

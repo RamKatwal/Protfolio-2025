@@ -53,8 +53,8 @@ const GitHubContributions: React.FC<GitHubContributionsProps> = ({
   }
 
   return (
-    <section className="w-full py-4 px-4 border-t border-gray-200 pb-8">
-      <h2 className="text-sm font-bold mb-2">GitHub Contributions</h2>
+    <section className="w-full py-4 px-4 border-t border-gray-200 pb-24 md:pb-8">
+      <h2 className="text-sm font-bold mb-2">GitHub</h2>
       
       <div className="w-full overflow-x-auto">
         <div className="min-w-full">

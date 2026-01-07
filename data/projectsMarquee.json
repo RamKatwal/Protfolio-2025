@@ -41,6 +41,13 @@
     "description": "Technology platform",
     "url": "#",
     "logo": "/images/Huskey App.png"
+  },
+  {
+    "id": 6,
+    "title": "Coinflick",
+    "description": "Technology platform",
+    "url": "#",
+    "logo": "/images/coinflick.png"
   }
 ]
 
