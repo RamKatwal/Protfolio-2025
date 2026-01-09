@@ -1,23 +1,36 @@
 @import "tailwindcss";
+@import "@fontsource/gochi-hand";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  
+
   /* Typography Scale - Font Sizes */
-  --font-size-h1: 3rem; /* 48px */
-  --font-size-h2: 2.25rem; /* 36px */
-  --font-size-h3: 1.875rem; /* 30px */
-  --font-size-h4: 1.5rem; /* 24px */
-  --font-size-h5: 1.25rem; /* 20px */
-  --font-size-h6: 1.125rem; /* 18px */
-  --font-size-body-lg: 1.125rem; /* 18px */
-  --font-size-body: 1rem; /* 16px */
-  --font-size-body-sm: 0.875rem; /* 14px */
-  --font-size-label: 0.875rem; /* 14px */
-  --font-size-caption: 0.75rem; /* 12px */
-  --font-size-small: 0.6875rem; /* 11px */
-  
+  --font-size-h1: 3rem;
+  /* 48px */
+  --font-size-h2: 2.25rem;
+  /* 36px */
+  --font-size-h3: 1.875rem;
+  /* 30px */
+  --font-size-h4: 1.5rem;
+  /* 24px */
+  --font-size-h5: 1.25rem;
+  /* 20px */
+  --font-size-h6: 1.125rem;
+  /* 18px */
+  --font-size-body-lg: 1.125rem;
+  /* 18px */
+  --font-size-body: 1rem;
+  /* 16px */
+  --font-size-body-sm: 0.875rem;
+  /* 14px */
+  --font-size-label: 0.875rem;
+  /* 14px */
+  --font-size-caption: 0.75rem;
+  /* 12px */
+  --font-size-small: 0.6875rem;
+  /* 11px */
+
   /* Typography Scale - Line Heights */
   --line-height-h1: 1.2;
   --line-height-h2: 1.25;
@@ -31,7 +44,7 @@
   --line-height-label: 1.4;
   --line-height-caption: 1.4;
   --line-height-small: 1.4;
-  
+
   /* Font Weights */
   --font-weight-regular: 400;
   --font-weight-medium: 500;
@@ -70,7 +83,8 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 14px; /* Reduced base font size from default 16px */
+  font-size: 14px;
+  /* Reduced base font size from default 16px */
 }
 
 /* Animated Border Line Effect */
@@ -78,6 +92,7 @@ body {
   0% {
     background-position: -100% 0%;
   }
+
   100% {
     background-position: 100% 0%;
   }
@@ -87,6 +102,7 @@ body {
   0% {
     transform: translateX(-100%);
   }
+
   100% {
     transform: translateX(100%);
   }
@@ -96,6 +112,7 @@ body {
   0% {
     transform: translateX(100%);
   }
+
   100% {
     transform: translateX(-100%);
   }
@@ -105,6 +122,7 @@ body {
   0% {
     transform: translateY(100%);
   }
+
   100% {
     transform: translateY(-100%);
   }
@@ -114,6 +132,7 @@ body {
   0% {
     transform: translateY(-100%);
   }
+
   100% {
     transform: translateY(100%);
   }
@@ -123,6 +142,7 @@ body {
   0% {
     background-position: -200% 0;
   }
+
   100% {
     background-position: 200% 0;
   }
@@ -175,6 +195,7 @@ body {
   from {
     transform: translateX(0);
   }
+
   to {
     /* Move exactly 50% (one set out of two) to create seamless infinite loop */
     /* When the first set moves completely off-screen, the second identical set is in the exact same position */

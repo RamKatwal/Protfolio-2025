@@ -18,11 +18,12 @@ interface Message {
 
 interface GuestbookProps {
   isMobileOverlay?: boolean;
+  isEmbedded?: boolean;
   onClose?: () => void;
 }
 
-const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, onClose }) => {
-  const [isOpen, setIsOpen] = useState(isMobileOverlay);
+const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, isEmbedded = false, onClose }) => {
+  const [isOpen, setIsOpen] = useState(isMobileOverlay || isEmbedded);
   const [messages, setMessages] = useState<Message[]>([]);
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
@@ -63,7 +64,7 @@ const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, onClose 
       try {
         setIsLoading(true);
         setError(null);
-        
+
         // Fetch messages from Supabase, ordered by created_at descending
         // Adjust table name if your table is named differently (e.g., 'messages', 'guestbook_messages')
         const { data, error: fetchError } = await supabase
@@ -142,14 +143,14 @@ const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, onClose 
   // Handle mouse move for 3D effect
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!bookRef.current) return;
-    
+
     const rect = bookRef.current.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
-    
+
     const x = (e.clientX - centerX) / (rect.width / 2);
     const y = (e.clientY - centerY) / (rect.height / 2);
-    
+
     setMousePosition({ x, y });
   };
 
@@ -161,7 +162,7 @@ const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, onClose 
   const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
     setMessage(value);
-    
+
     if (value.trim() && !showNameInput) {
       setShowNameInput(true);
     } else if (!value.trim()) {
@@ -174,7 +175,7 @@ const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, onClose 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setName(value);
-    
+
     if (value.trim() && message.trim() && !showSendButton) {
       setShowSendButton(true);
     } else if (!value.trim()) {
@@ -184,7 +185,7 @@ const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, onClose 
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!name.trim() || !message.trim()) {
       return;
     }
@@ -213,7 +214,7 @@ const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, onClose 
       // The real-time subscription will also handle it, but we check for duplicates
       const insertedRecord = data[0];
       const newMessage = transformMessage(insertedRecord);
-      
+
       setMessages((prevMessages) => {
         const exists = prevMessages.some((msg) => msg.id === newMessage.id);
         if (exists) return prevMessages;
@@ -261,7 +262,7 @@ const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, onClose 
   };
 
   // For mobile overlay, always show content, skip the closed state
-  if (!isOpen && !isMobileOverlay) {
+  if (!isOpen && !isMobileOverlay && !isEmbedded) {
     return (
       <ScrollReveal delay={300}>
         <div className="w-full h-[calc(100vh-56px)] bg-white flex flex-col items-center justify-center relative group cursor-pointer" onClick={() => setIsOpen(true)}>
@@ -269,23 +270,23 @@ const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, onClose 
           <div className="w-full h-full relative overflow-hidden">
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center space-y-4">
-                <div 
+                <div
                   ref={bookRef}
-                  className="relative w-32 h-32 mx-auto" 
+                  className="relative w-32 h-32 mx-auto"
                   style={{ perspective: '1000px' }}
                   onMouseMove={handleMouseMove}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <div 
+                  <div
                     className="book-3d relative w-full h-full transition-transform duration-300 ease-out"
                     style={{
                       transformStyle: 'preserve-3d',
                       transform: `rotateY(${mousePosition.x * 15}deg) rotateX(${-mousePosition.y * 15}deg) scale(${mousePosition.x !== 0 || mousePosition.y !== 0 ? 1.1 : 1}) translateY(${mousePosition.x !== 0 || mousePosition.y !== 0 ? -8 : 0}px)`,
                     }}
                   >
-                    <Image 
-                      src="/images/book.png" 
-                      alt="Guestbook" 
+                    <Image
+                      src="/images/book.png"
+                      alt="Guestbook"
                       fill
                       className="object-contain transition-all duration-300"
                     />
@@ -318,14 +319,16 @@ const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, onClose 
           <h2 className="text-xs font-semibold text-gray-900">Guestbook</h2>
           <span className="text-xs text-gray-400">({messages.length})</span>
         </div>
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={handleClose}
-          className="h-8 w-8 text-gray-900 hover:text-gray-900 hover:bg-gray-100"
-        >
-          <X className="w-4 h-4 text-gray-900" />
-        </Button>
+        {!isEmbedded && (
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={handleClose}
+            className="h-8 w-8 text-gray-900 hover:text-gray-900 hover:bg-gray-100"
+          >
+            <X className="w-4 h-4 text-gray-900" />
+          </Button>
+        )}
       </div>
 
       {/* Messages - Scrollable with padding for form */}
@@ -368,11 +371,10 @@ const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, onClose 
       </div>
 
       {/* Input Form - Progressive Disclosure - Fixed at bottom on mobile */}
-      <div className={`border-t border-gray-200 p-3 bg-white flex-shrink-0 z-10 ${
-        isMobileOverlay 
-          ? 'fixed bottom-0 left-0 right-0' 
+      <div className={`border-t border-gray-200 p-3 bg-white flex-shrink-0 z-10 ${isMobileOverlay && !isEmbedded
+          ? 'fixed bottom-0 left-0 right-0'
           : 'sticky bottom-0'
-      }`}>
+        }`}>
         <form onSubmit={handleSubmit} className="space-y-2">
           {/* Message Input - Always visible */}
           <Textarea
@@ -397,7 +399,7 @@ const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, onClose 
               }
             }}
           />
-          
+
           {/* Name Input - Appears when message has content */}
           {showNameInput && (
             <div className="overflow-hidden transition-all duration-300 ease-in-out transform translate-y-0 opacity-100">
@@ -426,7 +428,7 @@ const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, onClose 
               />
             </div>
           )}
-          
+
           {/* Send Button - Appears when both fields have content */}
           {showSendButton && (
             <div className="flex justify-end overflow-hidden transition-all duration-300 ease-in-out transform translate-y-0 opacity-100">

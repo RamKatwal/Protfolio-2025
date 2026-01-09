@@ -23,7 +23,7 @@ const LayoutClient: React.FC<LayoutClientProps> = ({ children }) => {
     <>
       <Leftbar isOpen={isMenuOpen} onClose={closeMenu} />
       <Header onMenuClick={toggleMenu} />
-      <main className="mt-14 md:ml-50 md:w-[calc(100%-240px)] w-full transition-all duration-300 pb-16 md:pb-0">
+      <main className="mt-14 md:ml-[200px] md:w-[calc(100%-240px)] w-full transition-all duration-300 pb-16 md:pb-0">
         {children}
       </main>
     </>

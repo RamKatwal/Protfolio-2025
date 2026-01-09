@@ -8,8 +8,8 @@ interface GitHubContributionsProps {
   username?: string;
 }
 
-const GitHubContributions: React.FC<GitHubContributionsProps> = ({ 
-  username 
+const GitHubContributions: React.FC<GitHubContributionsProps> = ({
+  username
 }) => {
   const [mounted, setMounted] = useState(false);
   const [svgContent, setSvgContent] = useState<string | null>(null);
@@ -30,11 +30,11 @@ const GitHubContributions: React.FC<GitHubContributionsProps> = ({
         setError(false);
         const contributionGraphUrl = `https://github-contributions-api.deno.dev/${githubUsername}.svg?year=2026&no-total=true`;
         const response = await fetch(contributionGraphUrl);
-        
+
         if (!response.ok) {
           throw new Error('Failed to fetch contribution graph');
         }
-        
+
         const svg = await response.text();
         setSvgContent(svg);
       } catch (err) {
@@ -53,9 +53,9 @@ const GitHubContributions: React.FC<GitHubContributionsProps> = ({
   }
 
   return (
-    <section className="w-full py-4 px-4 border-t border-gray-200 pb-24 md:pb-8">
+    <section className="w-full py-4 px-2 border-t border-gray-200 pb-24 md:pb-8">
       <h2 className="text-sm font-bold mb-2">GitHub</h2>
-      
+
       <div className="w-full overflow-x-auto">
         <div className="min-w-full">
           {/* GitHub-style contribution grid with month and day labels */}
@@ -105,7 +105,7 @@ const GitHubContributions: React.FC<GitHubContributionsProps> = ({
                     Fri
                   </div>
                 </div>
-                
+
                 {/* Month labels and SVG Chart */}
                 <div className="ml-6 relative">
                   {/* Month labels row - positioned at the top */}
@@ -126,10 +126,10 @@ const GitHubContributions: React.FC<GitHubContributionsProps> = ({
                         { name: 'Nov', week: 44, offset: 0 },
                         { name: 'Dec', week: 49, offset: 0 }
                       ];
-                      
+
                       // Each week column is approximately 14px wide (11px box + 3px gap)
                       const weekWidth = 14;
-                      
+
                       return months.map((month, index) => (
                         <div
                           key={month.name}
@@ -144,9 +144,9 @@ const GitHubContributions: React.FC<GitHubContributionsProps> = ({
                       ));
                     })()}
                   </div>
-                  
+
                   {/* SVG Chart */}
-                  <div 
+                  <div
                     className="w-full h-auto"
                     style={{ marginTop: '18px' }}
                     dangerouslySetInnerHTML={{ __html: svgContent }}
@@ -157,7 +157,7 @@ const GitHubContributions: React.FC<GitHubContributionsProps> = ({
           </div>
         </div>
       </div>
-      
+
       <div className="mt-4 flex justify-start">
         <Link
           href="https://github.com/RamKatwal"

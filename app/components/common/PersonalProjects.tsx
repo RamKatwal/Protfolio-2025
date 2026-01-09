@@ -18,16 +18,16 @@ const PersonalProjectItem: React.FC<PersonalProjectItemProps> = ({ project }) =>
       {/* Logo */}
       {project.logo && (
         <div className="flex-shrink-0 w-10 h-10 rounded-lg overflow-hidden border border-gray-200 flex items-center justify-center bg-gray-50 mt-3">
-          <Image 
-            src={project.logo} 
-            alt={`${project.title} logo`} 
+          <Image
+            src={project.logo}
+            alt={`${project.title} logo`}
             width={40}
             height={40}
             className="w-full h-full object-contain p-1.5"
           />
         </div>
       )}
-      
+
       <div className="flex-1 flex items-center py-3 px-0 group">
         <div className="flex-1 text-left">
           <div className="flex items-center gap-2 mb-0.5">
@@ -66,12 +66,12 @@ const PersonalProjectItem: React.FC<PersonalProjectItemProps> = ({ project }) =>
 
 const PersonalProjects: React.FC = () => {
   return (
-    <section className="w-full py-4 px-4 border-t border-gray-200 pb-8">
+    <section className="w-full py-4 px-2 border-t border-gray-200 pb-8">
       <h2 className="text-sm font-bold">My personal projects</h2>
       <p className="text-gray-500 mb-2 text-xs">
         Personal projects and side work I&apos;ve built.
       </p>
-      
+
       <div className="space-y-0">
         {personalProjects.map((project) => (
           <PersonalProjectItem

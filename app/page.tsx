@@ -8,13 +8,24 @@ import PersonalProjects from "@/app/components/common/PersonalProjects";
 import GitHubContributions from "@/app/components/common/GitHubContributions";
 import Guestbook from "@/app/components/common/Guestbook";
 import ScrollReveal from "@/app/components/common/ScrollReveal";
-import { LinkPreview }   from "@/app/components/ui/link-preview";
+import { LinkPreview } from "@/app/components/ui/link-preview";
 import Image from "next/image";
-import { BookOpen } from 'lucide-react';
-import { ShimmerButton } from '@/app/components/ui/shimmer-button';
+import { BookOpen, PanelBottomClose, PanelBottomOpen } from 'lucide-react';
+import DesktopEnvironment from "@/app/components/desktop/DesktopEnvironment";
+import { FloatingDock } from "@/components/ui/floating-dock";
+import { AnimatePresence, motion } from "motion/react";
+import {
+  BookMarked,
+  Settings,
+  Music,
+  Camera,
+  FileText,
+  Globe
+} from 'lucide-react';
 
 export default function Home() {
   const [isGuestbookOpen, setIsGuestbookOpen] = useState(false);
+  const [isMobileDockVisible, setIsMobileDockVisible] = useState(false);
 
   return (
     <>
@@ -23,19 +34,19 @@ export default function Home() {
         <div className="flex-1 h-full bg-white flex flex-col items-start border-r border-gray-200 overflow-y-auto overscroll-contain scroll-smooth thin-scrollbar">
           <div className="w-full flex flex-col">
             <ScrollReveal delay={0}>
-              <div className="w-full pt-2 pb-4 px-4">
+              <div className="w-full pt-2 pb-4 px-2">
                 <div className="flex gap-3 items-top">
                   {/* Logo */}
                   <div className="flex-shrink-0 w-10 h-10 rounded-lg overflow-hidden border border-gray-200 flex items-center justify-center bg-gray-50">
-                    <Image 
-                      src="/images/ramlogo.png" 
-                      alt="Profile" 
+                    <Image
+                      src="/images/ramlogo.png"
+                      alt="Profile"
                       width={40}
                       height={40}
                       className="w-full h-full object-contain p-1.5"
                     />
                   </div>
-                  
+
                   {/* Text Content */}
                   <div className="flex-1 line-height-1">
                     <p className="text-xs text-gray-900">
@@ -48,7 +59,7 @@ export default function Home() {
                 </div>
               </div>
             </ScrollReveal>
-            
+
             <ScrollReveal delay={100}>
               <Casestudysection />
             </ScrollReveal>
@@ -60,44 +71,109 @@ export default function Home() {
             <ScrollReveal delay={200}>
               <Experience />
             </ScrollReveal>
-            
+
             <ScrollReveal delay={250}>
               <PersonalProjects />
             </ScrollReveal>
-            
+
             <ScrollReveal delay={300}>
               <GitHubContributions username="RamKatwal" />
             </ScrollReveal>
           </div>
         </div>
 
-        {/* Guestbook Section - Desktop only */}
-        <div className="hidden md:block flex-1 h-full overflow-hidden border-t md:border-t-0 border-gray-200">
-          <Guestbook />
+        {/* Desktop Environment Section - Replaces Guestbook on Desktop */}
+        <div className="hidden md:block flex-1 h-full overflow-hidden border-t md:border-t-0 border-gray-200 bg-gray-50">
+          <DesktopEnvironment />
         </div>
       </div>
 
-      {/* Mobile Bottom Bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-white border-t border-gray-200 px-4 py-3 flex items-center justify-between gap-3">
-        <button
-          onClick={() => setIsGuestbookOpen(true)}
-          className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-gray-100 transition-colors"
-          aria-label="Open Guestbook"
-        >
-          <BookOpen className="w-5 h-5 text-gray-900" />
-          <span className="text-xs font-medium text-gray-900">Guestbook</span>
-        </button>
-        
-        {/* Write Message Button with Shimmer Effect */}
-        <ShimmerButton
-          onClick={() => setIsGuestbookOpen(true)}
-          shimmerColor="rgba(255, 255, 255, 0.3)"
-          background="rgba(0, 0, 0, 1)"
-          className="border-black/20"
-          aria-label="Write Message"
-        >
-          Write message
-        </ShimmerButton>
+      {/* Mobile Floating Dock */}
+      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-30 md:hidden w-auto flex items-center gap-2 pointer-events-none">
+        <div className="pointer-events-auto">
+          <AnimatePresence mode="wait">
+            {isMobileDockVisible ? (
+              <motion.div
+                key="dock"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                className="flex flex-col items-center gap-2"
+              >
+                <FloatingDock
+                  mobileClassName="hidden" // Hide the default mobile toggle
+                  desktopClassName="flex md:flex bg-white/90 border border-gray-200 shadow-xl rounded-2xl gap-3 px-4 py-3 h-16 items-end" // Force the desktop row layout on mobile
+                  items={[
+                    {
+                      title: "Guestbook",
+                      icon: <BookOpen className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+                      onClick: () => setIsGuestbookOpen(true),
+                      href: '#'
+                    },
+                    {
+                      title: "Daily Reads",
+                      icon: <BookMarked className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+                      href: '#',
+                      onClick: () => { }
+                    },
+                    {
+                      title: "Notes",
+                      icon: <FileText className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+                      href: '#',
+                      onClick: () => { }
+                    },
+                    {
+                      title: "Music",
+                      icon: <Music className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+                      href: '#',
+                      onClick: () => { }
+                    },
+                    {
+                      title: "Gallery",
+                      icon: <Camera className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+                      href: '#',
+                      onClick: () => { }
+                    },
+                    {
+                      title: "Browser",
+                      icon: <Globe className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+                      href: '#',
+                      onClick: () => { }
+                    },
+                    {
+                      title: "Settings",
+                      icon: <Settings className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+                      href: '#',
+                      onClick: () => { }
+                    },
+                  ]}
+                />
+                <button
+                  onClick={() => setIsMobileDockVisible(false)}
+                  className="p-2 bg-white/90 border border-gray-200 shadow-xl rounded-full text-gray-500 hover:text-gray-900 transition-colors"
+                  title="Hide Dock"
+                >
+                  <PanelBottomClose size={20} />
+                </button>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="toggle"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+              >
+                <button
+                  onClick={() => setIsMobileDockVisible(true)}
+                  className="p-3 bg-white/90 border border-gray-200 shadow-xl rounded-full text-gray-500 hover:text-gray-900 transition-colors group"
+                  title="Show Dock"
+                >
+                  <PanelBottomOpen size={24} className="group-hover:scale-110 transition-transform" />
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
 
       {/* Mobile Guestbook Overlay */}

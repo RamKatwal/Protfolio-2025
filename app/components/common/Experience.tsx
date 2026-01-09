@@ -10,7 +10,7 @@ const experiences: ExperienceData[] = experienceData as ExperienceData[];
 
 interface ExperienceItemProps {
   experience: ExperienceData;
-  isOpen: boolean;  
+  isOpen: boolean;
   onToggle: () => void;
 }
 
@@ -21,16 +21,16 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({ experience, isOpen, onT
         {/* Logo */}
         {experience.logo && (
           <div className="flex-shrink-0 w-10 h-10 rounded-lg overflow-hidden border border-gray-200 flex items-center justify-center bg-gray-50 mt-3">
-            <Image 
-              src={experience.logo} 
-              alt={`${experience.company} logo`} 
+            <Image
+              src={experience.logo}
+              alt={`${experience.company} logo`}
               width={40}
               height={40}
               className="w-full h-full object-contain p-1.5"
             />
           </div>
         )}
-        
+
         <button
           onClick={onToggle}
           className="flex-1 flex items-center py-3 px-0 hover:bg-transparent transition-colors group cursor-pointer"
@@ -44,15 +44,14 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({ experience, isOpen, onT
             <p className="text-xs text-gray-500">{experience.period}</p>
           </div>
           <div
-            className={`ml-2 w-4 h-4 flex-shrink-0 transition-transform duration-200 text-gray-400 group-hover:text-gray-600 ${
-              isOpen ? 'rotate-90' : ''
-            }`}
+            className={`ml-2 w-4 h-4 flex-shrink-0 transition-transform duration-200 text-gray-400 group-hover:text-gray-600 ${isOpen ? 'rotate-90' : ''
+              }`}
           >
             <ChevronRightIcon />
           </div>
         </button>
       </div>
-      
+
       {isOpen && (
         <div className="pt-2 pb-4 pl-0">
           <ul className="space-y-2">
@@ -83,12 +82,12 @@ const Experience: React.FC = () => {
   };
 
   return (
-    <section className="w-full py-4 px-4 border-t border-gray-200 pb-8">
+    <section className="w-full py-4 px-2 border-t border-gray-200 pb-8">
       <h2 className="text-sm font-bold">Experience</h2>
       <p className="text-gray-500 mb-2 text-xs">
         My professional journey and key achievements.
       </p>
-      
+
       <div className="space-y-0">
         {experiences.map((experience) => (
           <ExperienceItem

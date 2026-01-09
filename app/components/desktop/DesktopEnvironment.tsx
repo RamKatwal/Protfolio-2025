@@ -1,0 +1,233 @@
+'use client';
+
+import React, { useState } from 'react';
+import Window from './Window';
+import Guestbook from '../common/Guestbook';
+import DailyReads from '../common/DailyReads';
+import { FloatingDock } from '@/components/ui/floating-dock';
+import {
+    BookOpen,
+    BookMarked,
+    Settings,
+    Music,
+    Camera,
+    FileText,
+    Globe,
+    PanelRightClose,
+    PanelRightOpen,
+    Command
+} from 'lucide-react';
+import { AnimatePresence, motion } from 'motion/react';
+
+const DesktopEnvironment = () => {
+    // Start with no windows open
+    const [openWindows, setOpenWindows] = useState<string[]>([]);
+    const [activeWindow, setActiveWindow] = useState<string | null>(null);
+    const [minimizedWindows, setMinimizedWindows] = useState<Set<string>>(new Set());
+
+    // Dock visibility state
+    const [isDockVisible, setIsDockVisible] = useState(true);
+
+    const toggleWindow = (id: string) => {
+        if (openWindows.includes(id)) {
+            if (minimizedWindows.has(id)) {
+                const newMinimized = new Set(minimizedWindows);
+                newMinimized.delete(id);
+                setMinimizedWindows(newMinimized);
+                setActiveWindow(id);
+            } else {
+                setActiveWindow(id);
+            }
+        } else {
+            setOpenWindows([...openWindows, id]);
+            setActiveWindow(id);
+        }
+    };
+
+    const closeWindow = (id: string) => {
+        setOpenWindows(openWindows.filter(w => w !== id));
+        if (activeWindow === id) {
+            setActiveWindow(null);
+        }
+    };
+
+    const minimizeWindow = (id: string) => {
+        const newMinimized = new Set(minimizedWindows);
+        newMinimized.add(id);
+        setMinimizedWindows(newMinimized);
+        setActiveWindow(null);
+    };
+
+    const dockItems = [
+        {
+            title: "Guestbook",
+            icon: <BookOpen className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+            onClick: () => toggleWindow('guestbook'),
+            href: '#'
+        },
+        {
+            title: "Daily Reads",
+            icon: <BookMarked className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+            onClick: () => toggleWindow('daily-reads'),
+            href: '#'
+        },
+        {
+            title: "Notes",
+            icon: <FileText className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+            href: '#',
+            onClick: () => { } // Placeholder
+        },
+        {
+            title: "Music",
+            icon: <Music className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+            href: '#',
+            onClick: () => { } // Placeholder
+        },
+        {
+            title: "Gallery",
+            icon: <Camera className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+            href: '#',
+            onClick: () => { } // Placeholder
+        },
+        {
+            title: "Browser",
+            icon: <Globe className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+            href: '#',
+            onClick: () => { } // Placeholder
+        },
+        {
+            title: "Settings",
+            icon: <Settings className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+            href: '#',
+            onClick: () => { } // Placeholder
+        },
+    ];
+
+    return (
+        <div className="w-full h-full relative overflow-hidden bg-gray-50 select-none">
+            {/* Dot Pattern Background */}
+            <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-50" />
+
+            {/* Windows Layer */}
+            {openWindows.map((id) => {
+                if (minimizedWindows.has(id)) return null;
+
+                if (id === 'guestbook') {
+                    return (
+                        <Window
+                            key={id}
+                            title="Guestbook"
+                            icon={<BookOpen size={16} className="text-gray-500" />}
+                            isOpen={true}
+                            onClose={() => closeWindow(id)}
+                            onMinimize={() => minimizeWindow(id)}
+                            isActive={activeWindow === id}
+                            onFocus={() => setActiveWindow(id)}
+                            defaultMaximized={true}
+                        >
+                            <div className="w-full h-full flex flex-col">
+                                <Guestbook isEmbedded={true} />
+                            </div>
+                        </Window>
+                    );
+                }
+
+                if (id === 'daily-reads') {
+                    return (
+                        <Window
+                            key={id}
+                            title="Daily Reads"
+                            icon={<BookMarked size={16} className="text-gray-500" />}
+                            isOpen={true}
+                            onClose={() => closeWindow(id)}
+                            onMinimize={() => minimizeWindow(id)}
+                            isActive={activeWindow === id}
+                            onFocus={() => setActiveWindow(id)}
+                            initialPosition={{ x: 150, y: 80 }}
+                        >
+                            <DailyReads />
+                        </Window>
+                    );
+                }
+
+                return null;
+            })}
+
+            {/* Helper Message (when no windows open) */}
+            <AnimatePresence>
+                {openWindows.length === 0 && (
+                    <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        className="absolute top-1/2 -translate-y-1/2 right-32 z-10 flex items-center gap-4 select-none pointer-events-none"
+                    >
+                        <span className="text-xl text-gray-500 font-['Gochi_Hand'] -rotate-2 transform pt-2">
+                            Here for different experiments.
+                        </span>
+                        <svg width="60" height="40" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-gray-400 rotate-[-10deg] mb-4">
+                            <path
+                                d="M5 25C15 25 30 20 50 5M50 5L40 5M50 5L45 15"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                        </svg>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* Vertical Floating Dock (Right Side) */}
+            <div className="absolute top-1/2 -translate-y-1/2 right-0 z-50 flex items-center">
+                <AnimatePresence mode="wait">
+                    {isDockVisible ? (
+                        <motion.div
+                            key="dock"
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 20 }}
+                            className="flex flex-col gap-4 items-center pr-2"
+                        >
+                            <div className="relative">
+                                <FloatingDock
+                                    items={dockItems}
+                                    desktopClassName="bg-white/90 border border-gray-200 shadow-xl"
+                                    orientation="vertical"
+                                />
+
+                                {/* Toggle Button Positioned relative to dock */}
+                                <div className="absolute -left-12 top-1/2 -translate-y-1/2">
+                                    <button
+                                        onClick={() => setIsDockVisible(false)}
+                                        className="p-2 bg-white border border-gray-200 shadow-md rounded-full text-gray-500 hover:text-gray-900 transition-colors"
+                                        title="Hide Dock"
+                                    >
+                                        <PanelRightClose size={16} />
+                                    </button>
+                                </div>
+                            </div>
+                        </motion.div>
+                    ) : (
+                        <motion.div
+                            key="toggle"
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 20 }}
+                        >
+                            <button
+                                onClick={() => setIsDockVisible(true)}
+                                className="p-3 bg-white border-y border-l border-gray-200 shadow-md rounded-l-full rounded-r-none text-gray-500 hover:text-gray-900 transition-colors group"
+                                title="Show Dock"
+                            >
+                                <PanelRightOpen size={20} className="group-hover:scale-110 transition-transform" />
+                            </button>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </div>
+        </div>
+    );
+};
+
+export default DesktopEnvironment;

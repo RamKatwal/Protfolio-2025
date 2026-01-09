@@ -40,33 +40,33 @@ const ProjectsMarquee: React.FC = () => {
     const handleWheel = (e: WheelEvent) => {
       // Prevent default vertical scrolling
       e.preventDefault();
-      
+
       const now = Date.now();
       const timeSinceLastScroll = now - lastScrollTimeRef.current;
       lastScrollTimeRef.current = now;
 
       // Mark that user is scrolling
       setIsUserScrolling(true);
-      
+
       // Clear existing timeout
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current);
       }
-      
+
       // Update scroll position (convert vertical scroll to horizontal)
       setScrollPosition((prev) => {
         let newPos = prev + e.deltaY * 0.5; // Adjust scroll speed
-        
+
         // Handle infinite loop: if we've scrolled past one set, reset
         if (newPos >= singleSetWidth) {
           newPos = newPos - singleSetWidth;
         } else if (newPos <= -singleSetWidth) {
           newPos = newPos + singleSetWidth;
         }
-        
+
         return newPos;
       });
-      
+
       // Reset to automatic animation after 2 seconds of no scrolling
       scrollTimeoutRef.current = setTimeout(() => {
         setIsUserScrolling(false);
@@ -103,16 +103,16 @@ const ProjectsMarquee: React.FC = () => {
     const handleMouseDown = (e: MouseEvent) => {
       // Only start dragging on left mouse button
       if (e.button !== 0) return;
-      
+
       hasDraggedRef.current = false;
       setIsDragging(true);
       setStartX(e.clientX);
       setStartScrollPos(scrollPosition);
       setIsUserScrolling(true);
-      
+
       // Prevent text selection while dragging
       e.preventDefault();
-      
+
       // Clear any existing timeout
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current);
@@ -121,18 +121,18 @@ const ProjectsMarquee: React.FC = () => {
 
     const handleMouseMove = (e: MouseEvent) => {
       if (!isDragging) return;
-      
+
       e.preventDefault();
-      
+
       const diff = startX - e.clientX; // Inverted: drag right = scroll left
-      
+
       // Mark that user has dragged if movement is significant
       if (Math.abs(diff) > 5) {
         hasDraggedRef.current = true;
       }
-      
+
       let newPos = startScrollPos + diff;
-      
+
       // Handle infinite loop
       if (newPos >= singleSetWidth) {
         newPos = newPos - singleSetWidth;
@@ -143,25 +143,25 @@ const ProjectsMarquee: React.FC = () => {
         setStartScrollPos(newPos);
         setStartX(e.clientX);
       }
-      
+
       setScrollPosition(newPos);
     };
 
     const handleMouseUp = () => {
       if (!isDragging) return;
-      
+
       setIsDragging(false);
-      
+
       // Reset drag flag after a short delay to allow click events
       setTimeout(() => {
         hasDraggedRef.current = false;
       }, 100);
-      
+
       // Reset to automatic animation after 2 seconds of no interaction
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current);
       }
-      
+
       scrollTimeoutRef.current = setTimeout(() => {
         setIsUserScrolling(false);
         setScrollPosition((prev) => {
@@ -211,7 +211,7 @@ const ProjectsMarquee: React.FC = () => {
 
     const handleTouchStart = (e: TouchEvent) => {
       if (e.touches.length !== 1) return; // Only handle single touch
-      
+
       hasDraggedRef.current = false;
       setIsDragging(true);
       touchStateRef.current = {
@@ -220,7 +220,7 @@ const ProjectsMarquee: React.FC = () => {
         startScrollPos: scrollPosition
       };
       setIsUserScrolling(true);
-      
+
       // Clear any existing timeout
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current);
@@ -229,19 +229,19 @@ const ProjectsMarquee: React.FC = () => {
 
     const handleTouchMove = (e: TouchEvent) => {
       if (!touchStateRef.current.isActive || e.touches.length !== 1) return;
-      
+
       e.preventDefault(); // Prevent default scrolling behavior
-      
+
       const touch = e.touches[0];
       const diff = touchStateRef.current.startX - touch.clientX; // Inverted: swipe right = scroll left
-      
+
       // Mark that user has dragged if movement is significant
       if (Math.abs(diff) > 5) {
         hasDraggedRef.current = true;
       }
-      
+
       let newPos = touchStateRef.current.startScrollPos + diff;
-      
+
       // Handle infinite loop
       if (newPos >= singleSetWidth) {
         newPos = newPos - singleSetWidth;
@@ -252,26 +252,26 @@ const ProjectsMarquee: React.FC = () => {
         touchStateRef.current.startScrollPos = newPos;
         touchStateRef.current.startX = touch.clientX;
       }
-      
+
       setScrollPosition(newPos);
     };
 
     const handleTouchEnd = () => {
       if (!touchStateRef.current.isActive) return;
-      
+
       touchStateRef.current.isActive = false;
       setIsDragging(false);
-      
+
       // Reset drag flag after a short delay to allow tap events
       setTimeout(() => {
         hasDraggedRef.current = false;
       }, 100);
-      
+
       // Reset to automatic animation after 2 seconds of no interaction
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current);
       }
-      
+
       scrollTimeoutRef.current = setTimeout(() => {
         setIsUserScrolling(false);
         setScrollPosition((prev) => {
@@ -333,14 +333,14 @@ const ProjectsMarquee: React.FC = () => {
   if (!projects.length) return null;
 
   return (
-    <section className="w-full py-4 px-4 border-t border-gray-200">
+    <section className="w-full py-4 px-2 border-t border-gray-200">
       <h2 className="text-sm font-bold">Projects</h2>
       <p className="text-gray-500 mb-3 text-xs">
         Products I have worked on.
       </p>
 
-      <div 
-        ref={containerRef} 
+      <div
+        ref={containerRef}
         className={`relative overflow-hidden ${isDragging ? 'cursor-grabbing select-none' : 'cursor-grab'}`}
         style={{ userSelect: isDragging ? 'none' : 'auto' }}
       >

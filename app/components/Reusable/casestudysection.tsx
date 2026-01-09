@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { CaseStudyData } from '@/types'; 
+import { CaseStudyData } from '@/types';
 import caseStudies from '@/data/caseStudies.json';
 import { Badge } from '@/app/components/ui/badge';
 import Link from 'next/link';
 import Image from 'next/image';
-import { PasswordModal } from '@/app/components/ui/password-modal'; 
+import { PasswordModal } from '@/app/components/ui/password-modal';
 
 // Import JSON data
 // Use a type assertion to inform TypeScript about the structure of the imported JSON
@@ -22,7 +22,7 @@ interface CaseStudyLinkBadgeProps {
 
 // Wrapper component to use the Badge as a clickable link
 const CaseStudyLinkBadge: React.FC<CaseStudyLinkBadgeProps> = ({ label, url }) => {
-  const variant = 'default'; 
+  const variant = 'default';
   const spacingClass = 'mr-2 mb-2'; // Tailwind spacing for layout
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -51,7 +51,7 @@ const CaseStudyLinkBadge: React.FC<CaseStudyLinkBadgeProps> = ({ label, url }) =
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    
+
     // Only protect "Case Study" links
     if (label !== 'Case Study') {
       // For non-case study links, navigate directly
@@ -66,10 +66,10 @@ const CaseStudyLinkBadge: React.FC<CaseStudyLinkBadgeProps> = ({ label, url }) =
     // For "Case Study" links, check authentication directly from localStorage
     // This ensures we always have the latest authentication status
     const isAuth = checkAuthentication();
-    
+
     // Update state to reflect current authentication status
     setIsAuthenticated(isAuth);
-    
+
     if (isAuth) {
       // Already authenticated, redirect immediately
       if (url.startsWith('/')) {
@@ -96,19 +96,19 @@ const CaseStudyLinkBadge: React.FC<CaseStudyLinkBadgeProps> = ({ label, url }) =
         try {
           // Set authentication in localStorage
           localStorage.setItem(STORAGE_KEY, 'true');
-          
+
           // Verify it was saved correctly
           const saved = localStorage.getItem(STORAGE_KEY);
           if (saved !== 'true') {
             setErrorMessage('Failed to save authentication. Please try again.');
             return;
           }
-          
+
           // Update state immediately
           setIsAuthenticated(true);
           setIsModalOpen(false);
           setErrorMessage('');
-          
+
           // Redirect to the URL immediately
           // localStorage.setItem is synchronous, so it's safe to redirect right away
           if (url.startsWith('/')) {
@@ -140,8 +140,8 @@ const CaseStudyLinkBadge: React.FC<CaseStudyLinkBadgeProps> = ({ label, url }) =
           onClick={handleClick}
           className="inline-block"
         >
-          <Badge 
-            variant={variant} 
+          <Badge
+            variant={variant}
             className={`${spacingClass} cursor-pointer hover:bg-gray-50 transition-colors`}
           >
             {label}
@@ -159,13 +159,13 @@ const CaseStudyLinkBadge: React.FC<CaseStudyLinkBadgeProps> = ({ label, url }) =
 
   // For other links, use the original Link component
   return (
-    <Link 
+    <Link
       href={url}
-      target={url.startsWith('/') ? '_self' : '_blank'} 
+      target={url.startsWith('/') ? '_self' : '_blank'}
       rel={url.startsWith('/') ? '' : 'noopener noreferrer'}
     >
-      <Badge 
-        variant={variant} 
+      <Badge
+        variant={variant}
         className={`${spacingClass} cursor-pointer hover:bg-gray-50 transition-colors`}
       >
         {label}
@@ -206,25 +206,23 @@ const CaseStudyItem: React.FC<CaseStudyItemProps> = ({ study, onHover, isHovered
   };
 
   return (
-    <div className={`py-2 border-b border-gray-200 last:border-b-0 transition-all duration-200 ease-out ${
-      isHovered ? 'bg-gray-50/50 rounded-lg -mx-2 px-2 shadow-sm' : ''
-    }`}>
+    <div className={`py-2 border-b border-gray-200 last:border-b-0 transition-all duration-200 ease-out ${isHovered ? 'bg-gray-50/50 rounded-lg -mx-2 px-2 shadow-sm' : ''
+      }`}>
       <div className="flex gap-3">
         {/* Logo */}
         {study.logo && (
-          <div className={`flex-shrink-0 w-10 h-10 rounded-lg overflow-hidden border flex items-center justify-center transition-all duration-200 ${
-            isHovered ? 'border-gray-300 bg-gray-100 shadow-sm scale-105' : 'border-gray-200 bg-gray-50'
-          }`}>
-            <Image 
-              src={study.logo} 
-              alt={`${study.title} logo`} 
+          <div className={`flex-shrink-0 w-10 h-10 rounded-lg overflow-hidden border flex items-center justify-center transition-all duration-200 ${isHovered ? 'border-gray-300 bg-gray-100 shadow-sm scale-105' : 'border-gray-200 bg-gray-50'
+            }`}>
+            <Image
+              src={study.logo}
+              alt={`${study.title} logo`}
               width={40}
               height={40}
               className="w-full h-full object-contain p-1.5 transition-transform duration-200"
             />
           </div>
         )}
-        
+
         {/* Content */}
         <div className="flex-1 min-w-0">
           {/* Title and Description Container */}
@@ -235,27 +233,25 @@ const CaseStudyItem: React.FC<CaseStudyItemProps> = ({ study, onHover, isHovered
             onMouseMove={handleContentMouseMove}
           >
             {/* Project Title (e.g., Puffless App) */}
-            <h3 className={`text-sm font-medium transition-colors duration-200 ${
-              isHovered ? 'text-gray-900' : ''
-            }`}>
+            <h3 className={`text-sm font-medium transition-colors duration-200 ${isHovered ? 'text-gray-900' : ''
+              }`}>
               {study.title}
-            </h3> 
-            
+            </h3>
+
             {/* Description */}
-            <p className={`text-xs transition-colors duration-200 ${
-              isHovered ? 'text-gray-700' : 'text-gray-600'
-            }`}>
+            <p className={`text-xs transition-colors duration-200 ${isHovered ? 'text-gray-700' : 'text-gray-600'
+              }`}>
               {study.description}
             </p>
           </div>
-          
+
           {/* Badges Container */}
           <div className="flex flex-wrap items-center">
             {study.links.map((link, index) => (
-              <CaseStudyLinkBadge 
+              <CaseStudyLinkBadge
                 key={index}
-                label={link.label} 
-                url={link.url} 
+                label={link.label}
+                url={link.url}
               />
             ))}
           </div>
@@ -277,14 +273,14 @@ const Casestudysection: React.FC = () => {
   };
 
   return (
-    <section className="w-full py-4 px-4 border-t border-gray-200 relative">
+    <section className="w-full py-4 px-2 border-t border-gray-200 relative">
       <h2 className="font-bold text-h1">Case Studies</h2>
-      
+
       {/* Subtext from the image */}
       <p className="text-gray-500 mb-4 text-xs">
         Detailed Docuemntation and  problem solving.
       </p>
-      
+
       <div>
         {/* Map over the case studies data and render the items */}
         {caseStudiesData.map((study) => (
