@@ -15,7 +15,7 @@ import {
     Globe,
     PanelRightClose,
     PanelRightOpen,
-    Command
+    ArrowRight
 } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 
@@ -61,52 +61,52 @@ const DesktopEnvironment = () => {
     const dockItems = [
         {
             title: "Guestbook",
-            icon: <BookOpen className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+            icon: <BookOpen className="h-full w-full text-muted-foreground" />,
             onClick: () => toggleWindow('guestbook'),
             href: '#'
         },
         {
             title: "Daily Reads",
-            icon: <BookMarked className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+            icon: <BookMarked className="h-full w-full text-muted-foreground" />,
             onClick: () => toggleWindow('daily-reads'),
             href: '#'
         },
         {
             title: "Notes",
-            icon: <FileText className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+            icon: <FileText className="h-full w-full text-muted-foreground" />,
             href: '#',
             onClick: () => { } // Placeholder
         },
         {
             title: "Music",
-            icon: <Music className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+            icon: <Music className="h-full w-full text-muted-foreground" />,
             href: '#',
             onClick: () => { } // Placeholder
         },
         {
             title: "Gallery",
-            icon: <Camera className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+            icon: <Camera className="h-full w-full text-muted-foreground" />,
             href: '#',
             onClick: () => { } // Placeholder
         },
         {
             title: "Browser",
-            icon: <Globe className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+            icon: <Globe className="h-full w-full text-muted-foreground" />,
             href: '#',
             onClick: () => { } // Placeholder
         },
         {
             title: "Settings",
-            icon: <Settings className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+            icon: <Settings className="h-full w-full text-muted-foreground" />,
             href: '#',
             onClick: () => { } // Placeholder
         },
     ];
 
     return (
-        <div className="w-full h-full relative overflow-hidden bg-gray-50 select-none">
+        <div className="w-full h-full relative overflow-hidden bg-background select-none">
             {/* Dot Pattern Background */}
-            <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-50" />
+            <div className="absolute inset-0 bg-[radial-gradient(var(--dot-color)_1px,transparent_1px)] [background-size:16px_16px] opacity-50" />
 
             {/* Windows Layer */}
             {openWindows.map((id) => {
@@ -117,7 +117,7 @@ const DesktopEnvironment = () => {
                         <Window
                             key={id}
                             title="Guestbook"
-                            icon={<BookOpen size={16} className="text-gray-500" />}
+                            icon={<BookOpen size={16} className="text-muted-foreground" />}
                             isOpen={true}
                             onClose={() => closeWindow(id)}
                             onMinimize={() => minimizeWindow(id)}
@@ -137,7 +137,7 @@ const DesktopEnvironment = () => {
                         <Window
                             key={id}
                             title="Daily Reads"
-                            icon={<BookMarked size={16} className="text-gray-500" />}
+                            icon={<BookMarked size={16} className="text-muted-foreground" />}
                             isOpen={true}
                             onClose={() => closeWindow(id)}
                             onMinimize={() => minimizeWindow(id)}
@@ -162,18 +162,10 @@ const DesktopEnvironment = () => {
                         exit={{ opacity: 0, x: -20 }}
                         className="absolute top-1/2 -translate-y-1/2 right-32 z-10 flex items-center gap-4 select-none pointer-events-none"
                     >
-                        <span className="text-xl text-gray-500 font-['Gochi_Hand'] -rotate-2 transform pt-2">
-                            Here for different experiments.
+                        <span className="text-xl text-muted-foreground font-['Gochi_Hand'] -rotate-2 transform pt-2">
+                            Here for different experiments
                         </span>
-                        <svg width="60" height="40" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-gray-400 rotate-[-10deg] mb-4">
-                            <path
-                                d="M5 25C15 25 30 20 50 5M50 5L40 5M50 5L45 15"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                        </svg>
+                        <ArrowRight className="w-6 h-6 animate-pulse text-muted-foreground/60" />
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -187,12 +179,12 @@ const DesktopEnvironment = () => {
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: 20 }}
-                            className="flex flex-col gap-4 items-center pr-2"
+                            className="flex flex-col items-center pr-2"
                         >
                             <div className="relative">
                                 <FloatingDock
                                     items={dockItems}
-                                    desktopClassName="bg-white/90 border border-gray-200 shadow-xl"
+                                    desktopClassName="bg-background/80 border border-border shadow-xl backdrop-blur-md"
                                     orientation="vertical"
                                 />
 
@@ -200,7 +192,7 @@ const DesktopEnvironment = () => {
                                 <div className="absolute -left-12 top-1/2 -translate-y-1/2">
                                     <button
                                         onClick={() => setIsDockVisible(false)}
-                                        className="p-2 bg-white border border-gray-200 shadow-md rounded-full text-gray-500 hover:text-gray-900 transition-colors"
+                                        className="p-2 bg-background border border-border shadow-md rounded-full text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
                                         title="Hide Dock"
                                     >
                                         <PanelRightClose size={16} />
@@ -217,7 +209,7 @@ const DesktopEnvironment = () => {
                         >
                             <button
                                 onClick={() => setIsDockVisible(true)}
-                                className="p-3 bg-white border-y border-l border-gray-200 shadow-md rounded-l-full rounded-r-none text-gray-500 hover:text-gray-900 transition-colors group"
+                                className="p-3 bg-background border-y border-l border-border shadow-md rounded-l-full rounded-r-none text-muted-foreground hover:text-foreground hover:bg-accent transition-colors group"
                                 title="Show Dock"
                             >
                                 <PanelRightOpen size={20} className="group-hover:scale-110 transition-transform" />
@@ -229,5 +221,4 @@ const DesktopEnvironment = () => {
         </div>
     );
 };
-
 export default DesktopEnvironment;

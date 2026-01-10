@@ -1,89 +1,49 @@
 'use client';
 
 import React from 'react';
-import { Search, Menu } from 'lucide-react';
-import { FaXTwitter, FaGithub, FaLinkedin, FaBehance, FaDribbble } from 'react-icons/fa6';
-import Link from 'next/link';
+import { Menu, Search } from 'lucide-react';
+import { ModeToggle } from '@/components/mode-toggle';
+import { Input } from '@/app/components/ui/input';
 
 interface HeaderProps {
-  onMenuClick: () => void;
+    onMenuClick: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
-  return (
-    <header className="w-full md:w-[calc(100%-200px)] fixed top-0 left-0 md:left-[200px] right-0 z-30 flex justify-between md:justify-end items-center py-2 px-4 md:px-8 border-b border-gray-200 bg-white">
-      {/* Mobile menu button */}
-      <button
-        onClick={onMenuClick}
-        className="md:hidden p-2 rounded-md hover:bg-gray-100 transition-colors"
-        aria-label="Open menu"
-      >
-        <Menu className="w-5 h-5 text-gray-900" />
-      </button>
+    return (
+        <header className="fixed top-0 left-0 right-0 h-14 bg-background/80 backdrop-blur-md border-b border-border z-40 flex items-center justify-between px-4 md:px-6">
+            <div className="flex items-center gap-4">
+                <button
+                    onClick={onMenuClick}
+                    className="md:hidden p-2 -ml-2 hover:bg-muted rounded-md transition-colors"
+                    aria-label="Toggle menu"
+                >
+                    <Menu size={20} />
+                </button>
+                <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-lg bg-foreground text-background flex items-center justify-center font-bold text-lg">
+                        R
+                    </div>
+                    <span className="font-semibold text-sm hidden sm:block tracking-tight text-foreground/90">Ram Katwal</span>
+                </div>
+            </div>
 
-      <div className="flex items-center gap-2 md:gap-4">
-        <div className="relative hidden md:block">
-          <input 
-            type="text" 
-            placeholder="Search..." 
-            className="pl-4 pr-10 py-2 w-64 border border-gray-200 rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-gray-100 focus:border-gray-300 transition-all placeholder-gray-400"
-          />
-          <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
-        </div>
-        
-        {/* Social Media Icons */}
-        <div className="flex items-center gap-1 md:gap-4">
-        <Link 
-            href="https://x.com/visualsofalex11" 
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-600 hover:text-gray-900 transition-colors p-2 md:p-0"
-            aria-label="X (Twitter)"
-          >
-            <FaXTwitter size={20} className="md:w-[18px] md:h-[18px]" />
-          </Link>
-          <Link
-            href="https://www.behance.net/RamKatwal"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-600 hover:text-gray-900 transition-colors p-2 md:p-0"
-            aria-label="Behance"
-          >
-            <FaBehance size={20} className="md:w-[18px] md:h-[18px]" />
-          </Link>
-          <Link
-            href="https://dribbble.com/RamKatwal"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-600 hover:text-gray-900 transition-colors p-2 md:p-0"
-            aria-label="Dribbble"
-          >
-            <FaDribbble size={20} className="md:w-[18px] md:h-[18px]" />
-          </Link>
-          <Link 
-            href="https://github.com/RamKatwal" 
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-600 hover:text-gray-900 transition-colors p-2 md:p-0"
-            aria-label="GitHub"
-          >
-            <FaGithub size={20} className="md:w-[18px] md:h-[18px]" />
-          </Link>
-          
+            <div className="flex items-center gap-2 md:gap-4 flex-1 justify-end">
+                <div className="relative max-w-[200px] md:max-w-[300px] w-full hidden sm:block">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Input
+                        type="search"
+                        placeholder="Search..."
+                        className="pl-9 h-9 bg-muted/50 border-none focus-visible:ring-1 focus-visible:ring-foreground/20 rounded-full w-full"
+                    />
+                </div>
 
-          <Link 
-            href="https://www.linkedin.com/in/ram-katwal/" 
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-600 hover:text-gray-900 transition-colors p-2 md:p-0"
-            aria-label="LinkedIn"
-          >
-            <FaLinkedin size={20} className="md:w-[18px] md:h-[18px]" />
-          </Link>
-        </div>
-      </div>
-    </header>
-  );
+                <div className="flex items-center gap-1">
+                    <ModeToggle />
+                </div>
+            </div>
+        </header>
+    );
 };
 
 export default Header;

@@ -22,8 +22,15 @@ interface CaseStudyLinkBadgeProps {
 
 // Wrapper component to use the Badge as a clickable link
 const CaseStudyLinkBadge: React.FC<CaseStudyLinkBadgeProps> = ({ label, url }) => {
-  const variant = 'default';
-  const spacingClass = 'mr-2 mb-2'; // Tailwind spacing for layout
+  const variant = 'secondary';
+  // Use zinc colors to ensure the "gray" look in light mode and appropriate contrast in dark mode
+  // bg-secondary is usually light gray, but we reinforce with zinc-100/200 logic if needed or rely on secondary.
+  // User asked for "gray badge" and "check hover". 
+  // secondary = bg-secondary (zinc-100ish). hover = bg-secondary/80.
+  // We will override hover to be darker (zinc-200) for better feedback.
+  // User asked to explicitly ensure "little gray" on light hover and fix any "red" issue.
+  // We use standard tailwind zinc colors.
+  const spacingClass = 'mr-2 mb-2 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-600 dark:hover:text-zinc-200';
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -142,7 +149,7 @@ const CaseStudyLinkBadge: React.FC<CaseStudyLinkBadgeProps> = ({ label, url }) =
         >
           <Badge
             variant={variant}
-            className={`${spacingClass} cursor-pointer hover:bg-gray-50 transition-colors`}
+            className={`${spacingClass} cursor-pointer transition-colors`}
           >
             {label}
           </Badge>
@@ -166,7 +173,7 @@ const CaseStudyLinkBadge: React.FC<CaseStudyLinkBadgeProps> = ({ label, url }) =
     >
       <Badge
         variant={variant}
-        className={`${spacingClass} cursor-pointer hover:bg-gray-50 transition-colors`}
+        className={`${spacingClass} cursor-pointer transition-colors`}
       >
         {label}
       </Badge>
@@ -206,12 +213,12 @@ const CaseStudyItem: React.FC<CaseStudyItemProps> = ({ study, onHover, isHovered
   };
 
   return (
-    <div className={`py-2 border-b border-gray-200 last:border-b-0 transition-all duration-200 ease-out ${isHovered ? 'bg-gray-50/50 rounded-lg -mx-2 px-2 shadow-sm' : ''
+    <div className={`py-2 border-b border-border last:border-b-0 transition-all duration-200 ease-out ${isHovered ? 'bg-muted/50 rounded-lg -mx-2 px-2 shadow-sm' : ''
       }`}>
       <div className="flex gap-3">
         {/* Logo */}
         {study.logo && (
-          <div className={`flex-shrink-0 w-10 h-10 rounded-lg overflow-hidden border flex items-center justify-center transition-all duration-200 ${isHovered ? 'border-gray-300 bg-gray-100 shadow-sm scale-105' : 'border-gray-200 bg-gray-50'
+          <div className={`flex-shrink-0 w-10 h-10 rounded-lg overflow-hidden border flex items-center justify-center transition-all duration-200 ${isHovered ? 'border-border bg-accent shadow-sm scale-105' : 'border-border bg-muted'
             }`}>
             <Image
               src={study.logo}
@@ -233,13 +240,13 @@ const CaseStudyItem: React.FC<CaseStudyItemProps> = ({ study, onHover, isHovered
             onMouseMove={handleContentMouseMove}
           >
             {/* Project Title (e.g., Puffless App) */}
-            <h3 className={`text-sm font-medium transition-colors duration-200 ${isHovered ? 'text-gray-900' : ''
+            <h3 className={`text-sm font-medium transition-colors duration-200 ${isHovered ? 'text-foreground' : 'text-foreground/90'
               }`}>
               {study.title}
             </h3>
 
             {/* Description */}
-            <p className={`text-xs transition-colors duration-200 ${isHovered ? 'text-gray-700' : 'text-gray-600'
+            <p className={`text-xs transition-colors duration-200 ${isHovered ? 'text-muted-foreground' : 'text-muted-foreground/80'
               }`}>
               {study.description}
             </p>
@@ -262,7 +269,7 @@ const CaseStudyItem: React.FC<CaseStudyItemProps> = ({ study, onHover, isHovered
 };
 
 
-// --- Main Component: Casestudysection ---
+// Main Component: Casestudysection
 const Casestudysection: React.FC = () => {
   const [hoveredStudy, setHoveredStudy] = useState<CaseStudyData | null>(null);
   const [imagePosition, setImagePosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
@@ -273,12 +280,12 @@ const Casestudysection: React.FC = () => {
   };
 
   return (
-    <section className="w-full py-4 px-2 border-t border-gray-200 relative">
+    <section className="w-full py-4 px-2 border-t border-border relative">
       <h2 className="font-bold text-h1">Case Studies</h2>
 
       {/* Subtext from the image */}
-      <p className="text-gray-500 mb-4 text-xs">
-        Detailed Docuemntation and  problem solving.
+      <p className="text-muted-foreground mb-4 text-xs">
+        Detailed Documentation and problem solving.
       </p>
 
       <div>
@@ -305,7 +312,7 @@ const Casestudysection: React.FC = () => {
             willChange: 'transform, opacity',
           }}
         >
-          <div className="relative w-64 h-40 rounded-lg overflow-hidden shadow-2xl border border-gray-200 bg-white transition-transform duration-200">
+          <div className="relative w-64 h-40 rounded-lg overflow-hidden shadow-xl border border-border bg-popover transition-transform duration-200">
             <Image
               src={hoveredStudy.previewImage}
               alt={hoveredStudy.title}

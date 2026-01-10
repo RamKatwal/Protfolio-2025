@@ -333,9 +333,9 @@ const ProjectsMarquee: React.FC = () => {
   if (!projects.length) return null;
 
   return (
-    <section className="w-full py-4 px-2 border-t border-gray-200">
+    <section className="w-full py-4 px-2 border-t border-border">
       <h2 className="text-sm font-bold">Projects</h2>
-      <p className="text-gray-500 mb-3 text-xs">
+      <p className="text-muted-foreground mb-3 text-xs">
         Products I have worked on.
       </p>
 
@@ -345,8 +345,8 @@ const ProjectsMarquee: React.FC = () => {
         style={{ userSelect: isDragging ? 'none' : 'auto' }}
       >
         {/* Fade edges for a softer look */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-white to-transparent z-10" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-white to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-background to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-background to-transparent z-10" />
 
         <div
           ref={contentRef}
@@ -367,7 +367,7 @@ const ProjectsMarquee: React.FC = () => {
                 }
               }}
             >
-              <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border border-gray-200 flex items-center justify-center bg-gray-50 transition-all duration-200 group-hover:border-gray-300 group-hover:bg-gray-100">
+              <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border border-border flex items-center justify-center bg-muted transition-all duration-200 group-hover:border-border group-hover:bg-accent">
                 {project.logo ? (
                   <Image
                     src={project.logo}
@@ -377,12 +377,12 @@ const ProjectsMarquee: React.FC = () => {
                     className="w-full h-full object-contain p-2"
                   />
                 ) : (
-                  <span className="text-[10px] text-gray-400 px-2 text-center">
+                  <span className="text-[10px] text-muted-foreground px-2 text-center">
                     {project.title}
                   </span>
                 )}
               </div>
-              <p className="mt-2 text-[11px] text-gray-800 text-center line-clamp-2 group-hover:text-gray-900">
+              <p className="mt-2 text-[11px] text-foreground text-center line-clamp-2 group-hover:text-foreground/80">
                 {project.title}
               </p>
             </a>

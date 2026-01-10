@@ -53,21 +53,21 @@ const GitHubContributions: React.FC<GitHubContributionsProps> = ({
   }
 
   return (
-    <section className="w-full py-4 px-2 border-t border-gray-200 pb-24 md:pb-8">
+    <section className="w-full py-4 px-2 border-t border-border pb-24 md:pb-8">
       <h2 className="text-sm font-bold mb-2">GitHub</h2>
 
       <div className="w-full overflow-x-auto">
         <div className="min-w-full">
           {/* GitHub-style contribution grid with month and day labels */}
-          <div className="w-full rounded-lg border border-gray-200 bg-white p-4" style={{ minHeight: '150px' }}>
+          <div className="w-full rounded-lg border border-border bg-background p-4" style={{ minHeight: '150px' }}>
             {isLoading && (
               <div className="flex items-center justify-start h-32 px-4">
-                <div className="text-gray-400 text-xs">Loading contributions...</div>
+                <div className="text-muted-foreground text-xs">Loading contributions...</div>
               </div>
             )}
             {error && (
               <div className="flex items-center justify-start h-32 px-4">
-                <div className="text-gray-400 text-xs">Failed to load contributions</div>
+                <div className="text-muted-foreground text-xs">Failed to load contributions</div>
               </div>
             )}
             {!isLoading && !error && svgContent && (
@@ -76,7 +76,7 @@ const GitHubContributions: React.FC<GitHubContributionsProps> = ({
                 <div className="absolute left-0" style={{ width: '24px', paddingTop: '20px' }}>
                   {/* Mon - 2nd row (index 1) */}
                   <div
-                    className="text-[10px] text-gray-500 leading-none absolute"
+                    className="text-[10px] text-muted-foreground leading-none absolute"
                     style={{
                       top: '17px', // Row 1 position: 14px (row 0) + 3px gap = 17px
                       left: '0'
@@ -86,7 +86,7 @@ const GitHubContributions: React.FC<GitHubContributionsProps> = ({
                   </div>
                   {/* Wed - 4th row (index 3) */}
                   <div
-                    className="text-[10px] text-gray-500 leading-none absolute"
+                    className="text-[10px] text-muted-foreground leading-none absolute"
                     style={{
                       top: '51px', // Row 3 position: 17px (row 1) + 14px + 3px + 14px + 3px = 51px
                       left: '0'
@@ -96,7 +96,7 @@ const GitHubContributions: React.FC<GitHubContributionsProps> = ({
                   </div>
                   {/* Fri - 6th row (index 5) */}
                   <div
-                    className="text-[10px] text-gray-500 leading-none absolute"
+                    className="text-[10px] text-muted-foreground leading-none absolute"
                     style={{
                       top: '82px', // Row 5 position: moved up slightly
                       left: '0'
@@ -133,7 +133,7 @@ const GitHubContributions: React.FC<GitHubContributionsProps> = ({
                       return months.map((month, index) => (
                         <div
                           key={month.name}
-                          className="text-[10px] text-gray-500 leading-none absolute"
+                          className="text-[10px] text-muted-foreground leading-none absolute"
                           style={{
                             left: `${month.week * weekWidth + month.offset}px`,
                             top: '2px'
@@ -147,7 +147,7 @@ const GitHubContributions: React.FC<GitHubContributionsProps> = ({
 
                   {/* SVG Chart */}
                   <div
-                    className="w-full h-auto"
+                    className="w-full h-auto dark:opacity-80 dark:invert-[.9]"
                     style={{ marginTop: '18px' }}
                     dangerouslySetInnerHTML={{ __html: svgContent }}
                   />
@@ -163,7 +163,7 @@ const GitHubContributions: React.FC<GitHubContributionsProps> = ({
           href="https://github.com/RamKatwal"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-gray-900 transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
         >
           View on GitHub
           <ArrowUpRight className="w-3.5 h-3.5" />

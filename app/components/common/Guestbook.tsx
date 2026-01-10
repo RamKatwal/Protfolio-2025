@@ -265,7 +265,7 @@ const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, isEmbedd
   if (!isOpen && !isMobileOverlay && !isEmbedded) {
     return (
       <ScrollReveal delay={300}>
-        <div className="w-full h-[calc(100vh-56px)] bg-white flex flex-col items-center justify-center relative group cursor-pointer" onClick={() => setIsOpen(true)}>
+        <div className="w-full h-[calc(100vh-56px)] bg-background flex flex-col items-center justify-center relative group cursor-pointer" onClick={() => setIsOpen(true)}>
           {/* Background Image */}
           <div className="w-full h-full relative overflow-hidden">
             <div className="absolute inset-0 flex items-center justify-center">
@@ -311,22 +311,22 @@ const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, isEmbedd
   };
 
   return (
-    <div className={`w-full ${isMobileOverlay ? 'h-screen' : 'h-[calc(100vh-56px)]'} bg-white flex flex-col ${isMobileOverlay ? '' : 'border-l border-gray-200'} overflow-hidden`}>
+    <div className={`w-full ${isMobileOverlay ? 'h-screen' : 'h-[calc(100vh-56px)]'} bg-background/95 flex flex-col ${isMobileOverlay ? '' : 'border-l border-border'} overflow-hidden`}>
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 flex-shrink-0">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-border flex-shrink-0">
         <div className="flex items-center gap-2">
-          <BookOpen className="w-4 h-4 text-gray-600" />
-          <h2 className="text-xs font-semibold text-gray-900">Guestbook</h2>
-          <span className="text-xs text-gray-400">({messages.length})</span>
+          <BookOpen className="w-4 h-4 text-muted-foreground" />
+          <h2 className="text-xs font-semibold text-foreground">Guestbook</h2>
+          <span className="text-xs text-muted-foreground">({messages.length})</span>
         </div>
         {!isEmbedded && (
           <Button
             variant="ghost"
             size="icon"
             onClick={handleClose}
-            className="h-8 w-8 text-gray-900 hover:text-gray-900 hover:bg-gray-100"
+            className="h-8 w-8 text-foreground hover:text-foreground hover:bg-accent"
           >
-            <X className="w-4 h-4 text-gray-900" />
+            <X className="w-4 h-4 text-foreground" />
           </Button>
         )}
       </div>
@@ -334,33 +334,33 @@ const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, isEmbedd
       {/* Messages - Scrollable with padding for form */}
       <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4 min-h-0 pb-32 md:pb-0">
         {error && (
-          <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
-            <p className="text-xs text-red-600">{error}</p>
+          <div className="mb-4 p-3 bg-destructive/10 border border-destructive/20 rounded-md">
+            <p className="text-xs text-destructive">{error}</p>
           </div>
         )}
         {isLoading ? (
           <div className="flex flex-col items-center justify-center h-full text-center py-12">
-            <BookOpen className="w-12 h-12 text-gray-300 mb-4 animate-pulse" />
-            <p className="text-xs text-gray-500 mb-1">Loading messages...</p>
+            <BookOpen className="w-12 h-12 text-muted-foreground/30 mb-4 animate-pulse" />
+            <p className="text-xs text-muted-foreground mb-1">Loading messages...</p>
           </div>
         ) : messages.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full text-center py-12">
-            <BookOpen className="w-12 h-12 text-gray-300 mb-4" />
-            <p className="text-xs text-gray-500 mb-1">No messages yet</p>
-            <p className="text-xs text-gray-400">Be the first to leave a message!</p>
+            <BookOpen className="w-12 h-12 text-muted-foreground/30 mb-4" />
+            <p className="text-xs text-muted-foreground mb-1">No messages yet</p>
+            <p className="text-xs text-muted-foreground/60">Be the first to leave a message!</p>
           </div>
         ) : (
           messages.map((msg) => (
             <div key={msg.id} className="flex gap-3 group">
-              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center border border-gray-200">
-                <User className="w-4 h-4 text-gray-500" />
+              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-muted flex items-center justify-center border border-border">
+                <User className="w-4 h-4 text-muted-foreground" />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-xs font-medium text-gray-900">{msg.name}</span>
-                  <span className="text-xs text-gray-400">{formatDate(msg.timestamp)}</span>
+                  <span className="text-xs font-medium text-foreground">{msg.name}</span>
+                  <span className="text-xs text-muted-foreground">{formatDate(msg.timestamp)}</span>
                 </div>
-                <p className="text-xs text-gray-700 leading-relaxed whitespace-pre-wrap break-words">
+                <p className="text-xs text-foreground/90 leading-relaxed whitespace-pre-wrap break-words">
                   {msg.message}
                 </p>
               </div>
@@ -371,9 +371,9 @@ const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, isEmbedd
       </div>
 
       {/* Input Form - Progressive Disclosure - Fixed at bottom on mobile */}
-      <div className={`border-t border-gray-200 p-3 bg-white flex-shrink-0 z-10 ${isMobileOverlay && !isEmbedded
-          ? 'fixed bottom-0 left-0 right-0'
-          : 'sticky bottom-0'
+      <div className={`border-t border-border p-3 bg-background flex-shrink-0 z-10 ${isMobileOverlay && !isEmbedded
+        ? 'fixed bottom-0 left-0 right-0'
+        : 'sticky bottom-0'
         }`}>
         <form onSubmit={handleSubmit} className="space-y-2">
           {/* Message Input - Always visible */}
@@ -381,7 +381,7 @@ const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, isEmbedd
             value={message}
             onChange={handleMessageChange}
             placeholder="Leave a message..."
-            className="text-xs resize-none transition-all duration-200 min-h-[60px]"
+            className="text-xs resize-none transition-all duration-200 min-h-[60px] bg-background text-foreground placeholder:text-muted-foreground border-border"
             rows={showNameInput ? 1 : 2}
             onFocus={(e) => {
               // Scroll textarea into view on mobile when focused
@@ -409,7 +409,7 @@ const Guestbook: React.FC<GuestbookProps> = ({ isMobileOverlay = false, isEmbedd
                 placeholder="Your name"
                 value={name}
                 onChange={handleNameChange}
-                className="h-8 text-xs bg-white border-gray-200 focus-visible:ring-gray-300 focus-visible:ring-1 transition-all duration-200"
+                className="h-8 text-xs bg-background text-foreground placeholder:text-muted-foreground border-border focus-visible:ring-ring focus-visible:ring-1 transition-all duration-200"
                 onFocus={(e) => {
                   // Scroll input into view on mobile when focused
                   if (isMobileOverlay) {

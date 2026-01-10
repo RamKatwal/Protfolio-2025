@@ -39,7 +39,7 @@ const isValidHttpUrl = (str: string): boolean => {
 export function LinkPreview({
   href,
   children,
-  className = "cursor-pointer rounded-md bg-gray-100 px-2 py-0.5 text-sm font-medium text-gray-700 transition-all hover:bg-gray-200 hover:text-gray-900 inline-block",
+  className = " z-[999] cursor-pointer rounded-md bg-gray-100 px-2 py-0.5 text-sm font-medium text-gray-700 transition-all hover:bg-gray-200 hover:text-gray-900 inline-block",
 }: LinkPreviewProps) {
   const elementRef = useRef<HTMLAnchorElement>(null);
   const [isInView, setIsInView] = useState(false);
@@ -68,11 +68,11 @@ export function LinkPreview({
       try {
         // Use a CORS proxy to fetch the URL
         const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(href)}`;
-        
+
         // Suppress browser extension errors
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
-        
+
         const response = await fetch(proxyUrl, {
           signal: controller.signal,
           headers: {
@@ -154,13 +154,13 @@ export function LinkPreview({
         if (isMounted) {
           // Suppress browser extension errors
           const error = err as Error;
-          if (error.message?.includes('runtime.lastError') || 
-              error.message?.includes('Receiving end does not exist')) {
+          if (error.message?.includes('runtime.lastError') ||
+            error.message?.includes('Receiving end does not exist')) {
             // Silently ignore browser extension errors
             setIsLoading(false);
             return;
           }
-          
+
           // If proxy fails, show basic URL info as fallback
           try {
             const urlObj = new URL(href);

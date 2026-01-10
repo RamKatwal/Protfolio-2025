@@ -29,15 +29,15 @@ export default function Home() {
 
   return (
     <>
-      <div className="w-full h-[calc(100vh-56px)] flex flex-col md:flex-row overflow-hidden">
+      <div className="w-full h-[calc(100vh-56px)] flex flex-col md:flex-row overflow-hidden bg-background text-foreground">
         {/* Main Content */}
-        <div className="flex-1 h-full bg-white flex flex-col items-start border-r border-gray-200 overflow-y-auto overscroll-contain scroll-smooth thin-scrollbar">
+        <div className="flex-1 h-full bg-background flex flex-col items-start border-r border-border overflow-y-auto overscroll-contain scroll-smooth thin-scrollbar">
           <div className="w-full flex flex-col">
             <ScrollReveal delay={0}>
               <div className="w-full pt-2 pb-4 px-2">
                 <div className="flex gap-3 items-top">
                   {/* Logo */}
-                  <div className="flex-shrink-0 w-10 h-10 rounded-lg overflow-hidden border border-gray-200 flex items-center justify-center bg-gray-50">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-lg overflow-hidden border border-border flex items-center justify-center bg-muted">
                     <Image
                       src="/images/ramlogo.png"
                       alt="Profile"
@@ -49,7 +49,7 @@ export default function Home() {
 
                   {/* Text Content */}
                   <div className="flex-1 line-height-1">
-                    <p className="text-xs text-gray-900">
+                    <p className="text-xs text-foreground">
                       Hi I&apos;m Ram {" "}
                       <LinkPreview href="https://www.instagram.com/design.alex11/">visualsofalex11</LinkPreview>
                       , a designer based in Nepal. <br />
@@ -83,7 +83,7 @@ export default function Home() {
         </div>
 
         {/* Desktop Environment Section - Replaces Guestbook on Desktop */}
-        <div className="hidden md:block flex-1 h-full overflow-hidden border-t md:border-t-0 border-gray-200 bg-gray-50">
+        <div className="hidden md:block flex-1 h-full overflow-hidden border-t md:border-t-0 border-border">
           <DesktopEnvironment />
         </div>
       </div>
@@ -102,47 +102,47 @@ export default function Home() {
               >
                 <FloatingDock
                   mobileClassName="hidden" // Hide the default mobile toggle
-                  desktopClassName="flex md:flex bg-white/90 border border-gray-200 shadow-xl rounded-2xl gap-3 px-4 py-3 h-16 items-end" // Force the desktop row layout on mobile
+                  desktopClassName="flex md:flex bg-background/90 border border-border shadow-xl rounded-2xl gap-3 px-4 py-3 h-16 items-end" // Force the desktop row layout on mobile
                   items={[
                     {
                       title: "Guestbook",
-                      icon: <BookOpen className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+                      icon: <BookOpen className="h-full w-full text-muted-foreground dark:text-foreground" />,
                       onClick: () => setIsGuestbookOpen(true),
                       href: '#'
                     },
                     {
                       title: "Daily Reads",
-                      icon: <BookMarked className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+                      icon: <BookMarked className="h-full w-full text-muted-foreground dark:text-foreground" />,
                       href: '#',
                       onClick: () => { }
                     },
                     {
                       title: "Notes",
-                      icon: <FileText className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+                      icon: <FileText className="h-full w-full text-muted-foreground dark:text-foreground" />,
                       href: '#',
                       onClick: () => { }
                     },
                     {
                       title: "Music",
-                      icon: <Music className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+                      icon: <Music className="h-full w-full text-muted-foreground dark:text-foreground" />,
                       href: '#',
                       onClick: () => { }
                     },
                     {
                       title: "Gallery",
-                      icon: <Camera className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+                      icon: <Camera className="h-full w-full text-muted-foreground dark:text-foreground" />,
                       href: '#',
                       onClick: () => { }
                     },
                     {
                       title: "Browser",
-                      icon: <Globe className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+                      icon: <Globe className="h-full w-full text-muted-foreground dark:text-foreground" />,
                       href: '#',
                       onClick: () => { }
                     },
                     {
                       title: "Settings",
-                      icon: <Settings className="h-full w-full text-neutral-600 dark:text-neutral-300" />,
+                      icon: <Settings className="h-full w-full text-muted-foreground dark:text-foreground" />,
                       href: '#',
                       onClick: () => { }
                     },
@@ -150,7 +150,7 @@ export default function Home() {
                 />
                 <button
                   onClick={() => setIsMobileDockVisible(false)}
-                  className="p-2 bg-white/90 border border-gray-200 shadow-xl rounded-full text-gray-500 hover:text-gray-900 transition-colors"
+                  className="p-2 bg-background/90 border border-border shadow-xl rounded-full text-muted-foreground hover:text-foreground transition-colors"
                   title="Hide Dock"
                 >
                   <PanelBottomClose size={20} />
@@ -165,7 +165,7 @@ export default function Home() {
               >
                 <button
                   onClick={() => setIsMobileDockVisible(true)}
-                  className="p-3 bg-white/90 border border-gray-200 shadow-xl rounded-full text-gray-500 hover:text-gray-900 transition-colors group"
+                  className="p-3 bg-background/90 border border-border shadow-xl rounded-full text-muted-foreground hover:text-foreground transition-colors group"
                   title="Show Dock"
                 >
                   <PanelBottomOpen size={24} className="group-hover:scale-110 transition-transform" />
@@ -178,7 +178,7 @@ export default function Home() {
 
       {/* Mobile Guestbook Overlay */}
       {isGuestbookOpen && (
-        <div className="fixed inset-0 z-50 md:hidden bg-white">
+        <div className="fixed inset-0 z-50 md:hidden bg-background">
           <Guestbook isMobileOverlay onClose={() => setIsGuestbookOpen(false)} />
         </div>
       )}
