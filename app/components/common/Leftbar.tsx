@@ -28,14 +28,14 @@ const NavItem = ({ icon, label, href, isActive = false, onNavigate }: NavItemPro
         <Link href={href} className="w-full" onClick={onNavigate}>
             <div
                 className={`box-border content-stretch flex gap-[8px] h-[36px] items-center px-[16px] py-[8px] relative rounded-[6px] shrink-0 w-full cursor-pointer transition-all duration-200 ease-in-out ${isActive
-                    ? 'bg-primary text-primary-foreground shadow-sm'
+                    ? 'bg-accent text-foreground shadow-sm'
                     : 'bg-transparent hover:bg-accent hover:text-accent-foreground text-foreground'
                     }`}
             >
-                <div className={`relative shrink-0 size-[16px] ${isActive ? 'text-primary-foreground' : 'text-foreground'}`}>
+                <div className={`relative shrink-0 size-[16px] ${isActive ? 'text-foreground' : 'text-foreground'}`}>
                     {icon}
                 </div>
-                <p className={`font-medium leading-[18px] not-italic relative shrink-0 text-xs text-nowrap whitespace-pre ${isActive ? 'text-primary-foreground' : 'text-foreground'
+                <p className={`font-medium leading-[18px] not-italic relative shrink-0 text-xs text-nowrap whitespace-pre ${isActive ? 'text-foreground' : 'text-foreground'
                     }`}>
                     {label}
                 </p>
