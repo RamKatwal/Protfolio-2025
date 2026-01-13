@@ -88,7 +88,7 @@ export default function AboutPage() {
         </div>
 
         {/* Item 6 - New Image 2 */}
-        <div className="relative rounded-2xl overflow-hidden border border-border break-inside-avoid">
+        {/* <div className="relative rounded-2xl overflow-hidden border border-border break-inside-avoid">
           <Image
             src="/aboutusimages/WhatsApp%20Image%202026-01-11%20at%207.57.56%20PM.jpeg"
             alt="Gallery Image 5"
@@ -96,7 +96,7 @@ export default function AboutPage() {
             height={500}
             className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
           />
-        </div>
+        </div> */}
       </div>
 
       {/* Social Links */}

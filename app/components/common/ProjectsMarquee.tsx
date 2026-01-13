@@ -334,10 +334,10 @@ const ProjectsMarquee: React.FC = () => {
 
   return (
     <section className="w-full py-4 px-2 border-t border-border">
-      <h2 className="text-sm font-bold">Projects</h2>
-      <p className="text-muted-foreground mb-3 text-xs">
+      <h2 className="text-sm font-bold mb-2">Projects</h2>
+      {/* <p className="text-muted-foreground mb-3 text-xs">
         Products I have worked on.
-      </p>
+      </p> */}
 
       <div
         ref={containerRef}

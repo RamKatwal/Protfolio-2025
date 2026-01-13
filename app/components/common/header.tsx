@@ -20,12 +20,6 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
                 >
                     <Menu size={20} />
                 </button>
-                <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-lg bg-foreground text-background flex items-center justify-center font-bold text-lg">
-                        R
-                    </div>
-                    <span className="font-semibold text-sm hidden sm:block tracking-tight text-foreground/90">Ram Katwal</span>
-                </div>
             </div>
 
             <div className="flex items-center gap-2 md:gap-4 flex-1 justify-end">

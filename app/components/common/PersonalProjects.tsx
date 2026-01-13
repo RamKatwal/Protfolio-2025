@@ -67,10 +67,10 @@ const PersonalProjectItem: React.FC<PersonalProjectItemProps> = ({ project }) =>
 const PersonalProjects: React.FC = () => {
   return (
     <section className="w-full py-4 px-2 border-t border-border pb-8">
-      <h2 className="text-sm font-bold">My personal projects</h2>
-      <p className="text-muted-foreground mb-2 text-xs">
+      <h2 className="text-sm font-bold">Personal projects</h2>
+      {/* <p className="text-muted-foreground mb-2 text-xs">
         Personal projects and side work I&apos;ve built.
-      </p>
+      </p> */}
 
       <div className="space-y-0">
         {personalProjects.map((project) => (
