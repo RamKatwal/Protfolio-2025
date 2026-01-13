@@ -82,7 +82,7 @@ const Experience: React.FC = () => {
   };
 
   return (
-    <section className="w-full py-4 px-2 border-t border-border pb-8">
+    <section className="w-full py-2 px-2 pb-8">
       <h2 className="text-sm font-bold">Experience</h2>
       <p className="text-muted-foreground mb-2 text-xs">
         My professional journey and key achievements.

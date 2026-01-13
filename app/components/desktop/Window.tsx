@@ -96,7 +96,7 @@ const Window: React.FC<WindowProps> = ({
     return (
         <div
             ref={windowRef}
-            className={`absolute flex flex-col bg-white rounded-lg shadow-xl overflow-hidden border border-gray-200 transition-all duration-200 ${isActive ? 'z-50 shadow-2xl ring-1 ring-black/5' : 'z-10 shadow-md opacity-95'
+            className={`absolute flex flex-col bg-background rounded-lg shadow-xl overflow-hidden border border-border transition-all duration-200 ${isActive ? 'z-50 shadow-2xl ring-1 ring-border' : 'z-10 shadow-md opacity-95'
                 } ${isMaximized ? '!inset-0 !w-full !h-full rounded-none border-0' : ''}`}
             style={!isMaximized ? {
                 left: position.x,
@@ -109,34 +109,34 @@ const Window: React.FC<WindowProps> = ({
         >
             {/* Title Bar */}
             <div
-                className={`h-10 bg-white border-b border-gray-100 flex items-center justify-between px-4 select-none cursor-default ${isActive ? 'bg-gray-50/50' : ''
+                className={`h-10 bg-muted/40 border-b border-border flex items-center justify-between px-4 select-none cursor-default ${isActive ? 'bg-muted/60' : ''
                     }`}
                 onMouseDown={handleMouseDown}
                 onDoubleClick={toggleMaximize}
             >
                 <div className="flex items-center gap-3">
-                    <div className="opacity-80">
+                    <div className="opacity-80 text-foreground">
                         {icon}
                     </div>
-                    <span className="text-xs font-semibold text-gray-800 tracking-tight">{title}</span>
+                    <span className="text-xs font-semibold text-foreground tracking-tight">{title}</span>
                 </div>
 
-                <div className="flex items-center gap-2 window-controls pl-4 border-l border-gray-100 h-5">
+                <div className="flex items-center gap-2 window-controls pl-4 border-l border-border h-5">
                     <button
                         onClick={(e) => { e.stopPropagation(); onMinimize?.(); }}
-                        className="text-gray-400 hover:text-gray-900 transition-colors"
+                        className="text-muted-foreground hover:text-foreground transition-colors"
                     >
                         <Minus size={14} strokeWidth={2} />
                     </button>
                     <button
                         onClick={(e) => { e.stopPropagation(); toggleMaximize(); }}
-                        className="text-gray-400 hover:text-gray-900 transition-colors"
+                        className="text-muted-foreground hover:text-foreground transition-colors"
                     >
                         <Square size={12} strokeWidth={2} />
                     </button>
                     <button
                         onClick={(e) => { e.stopPropagation(); onClose(); }}
-                        className="text-gray-400 hover:text-red-500 transition-colors"
+                        className="text-muted-foreground hover:text-destructive transition-colors"
                     >
                         <X size={14} strokeWidth={2} />
                     </button>
@@ -144,7 +144,7 @@ const Window: React.FC<WindowProps> = ({
             </div>
 
             {/* Content */}
-            <div className="flex-1 overflow-auto bg-white/80 relative">
+            <div className="flex-1 overflow-auto bg-background relative">
                 {children}
             </div>
         </div>

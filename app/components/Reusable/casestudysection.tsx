@@ -231,7 +231,7 @@ const CaseStudyItem: React.FC<CaseStudyItemProps> = ({ study, onHover, isHovered
         )}
 
         {/* Content */}
-        <div className="flex-1 min-w-0">
+        <div className="flex-1 min-w- 0">
           {/* Title and Description Container */}
           <div
             className="cursor-pointer"
@@ -281,12 +281,12 @@ const Casestudysection: React.FC = () => {
 
   return (
     <section className="w-full py-4 px-2 border-t border-border relative">
-      <h2 className="font-bold text-h1">Case Studies</h2>
+      <h2 className="font-bold text-h1 mb-2">Case Studies</h2>
 
-      {/* Subtext from the image */}
+      {/* Subtext from the image
       <p className="text-muted-foreground mb-4 text-xs">
         Detailed Documentation and problem solving.
-      </p>
+      </p> */}
 
       <div>
         {/* Map over the case studies data and render the items */}

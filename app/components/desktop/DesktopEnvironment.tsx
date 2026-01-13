@@ -15,8 +15,10 @@ import {
     Globe,
     PanelRightClose,
     PanelRightOpen,
-    ArrowRight
+    ArrowRight,
+    Github
 } from 'lucide-react';
+import GitHubContributions from '../common/GitHubContributions';
 import { AnimatePresence, motion } from 'motion/react';
 
 const DesktopEnvironment = () => {
@@ -69,6 +71,12 @@ const DesktopEnvironment = () => {
             title: "Daily Reads",
             icon: <BookMarked className="h-full w-full text-muted-foreground" />,
             onClick: () => toggleWindow('daily-reads'),
+            href: '#'
+        },
+        {
+            title: "GitHub",
+            icon: <Github className="h-full w-full text-muted-foreground" />,
+            onClick: () => toggleWindow('github'),
             href: '#'
         },
         {
@@ -146,6 +154,24 @@ const DesktopEnvironment = () => {
                             initialPosition={{ x: 150, y: 80 }}
                         >
                             <DailyReads />
+                        </Window>
+                    );
+                }
+
+                if (id === 'github') {
+                    return (
+                        <Window
+                            key={id}
+                            title="GitHub"
+                            icon={<Github size={16} className="text-muted-foreground" />}
+                            isOpen={true}
+                            onClose={() => closeWindow(id)}
+                            onMinimize={() => minimizeWindow(id)}
+                            isActive={activeWindow === id}
+                            onFocus={() => setActiveWindow(id)}
+                            initialPosition={{ x: 200, y: 100 }}
+                        >
+                            <GitHubContributions isEmbedded={true} username="RamKatwal" />
                         </Window>
                     );
                 }

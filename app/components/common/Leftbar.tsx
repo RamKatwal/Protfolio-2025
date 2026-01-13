@@ -3,7 +3,7 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from "next/navigation";
-import { X, Github, Twitter, Linkedin, Dribbble } from 'lucide-react';
+import { X, Github, Twitter, Linkedin, Dribbble, Briefcase } from 'lucide-react';
 
 import {
     HouseIcon,
@@ -103,6 +103,7 @@ const Leftbar: React.FC<LeftbarProps> = ({ isOpen, onClose }) => {
                 <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 w-full px-2 py-2 flex-1">
                     <NavItem icon={<HouseIcon />} label="Home" href='/' isActive={pathname === '/'} onNavigate={onClose} />
                     <NavItem icon={<LineSegmentIcon />} label="About" href='/about-me' isActive={pathname === '/about-me'} onNavigate={onClose} />
+                    <NavItem icon={<Briefcase size={16} />} label="Experience" href='/experience' isActive={pathname === '/experience'} onNavigate={onClose} />
                     <NavItem icon={<PencilSimpleIcon />} label="Writing" href='/writing' isActive={pathname === '/writing'} onNavigate={onClose} />
                     <NavItem icon={<StackSimpleIcon />} label="Stacks" href='/stacks' isActive={pathname === '/stacks'} onNavigate={onClose} />
                     <NavItem icon={<BookmarkSimpleIcon />} label="Bookmarks" href='/bookmarks' isActive={pathname === '/bookmarks'} onNavigate={onClose} />

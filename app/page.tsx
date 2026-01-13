@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Casestudysection from "@/app/components/Reusable/casestudysection";
-import Experience from "@/app/components/common/Experience";
 import ProjectsMarquee from "@/app/components/common/ProjectsMarquee";
 import PersonalProjects from "@/app/components/common/PersonalProjects";
 import GitHubContributions from "@/app/components/common/GitHubContributions";
@@ -10,7 +9,7 @@ import Guestbook from "@/app/components/common/Guestbook";
 import ScrollReveal from "@/app/components/common/ScrollReveal";
 import { LinkPreview } from "@/app/components/ui/link-preview";
 import Image from "next/image";
-import { BookOpen, PanelBottomClose, PanelBottomOpen } from 'lucide-react';
+import { BookOpen, PanelBottomClose, PanelBottomOpen, X, Github } from 'lucide-react';
 import DesktopEnvironment from "@/app/components/desktop/DesktopEnvironment";
 import { FloatingDock } from "@/components/ui/floating-dock";
 import { AnimatePresence, motion } from "motion/react";
@@ -25,6 +24,7 @@ import {
 
 export default function Home() {
   const [isGuestbookOpen, setIsGuestbookOpen] = useState(false);
+  const [isGitHubOpen, setIsGitHubOpen] = useState(false);
   const [isMobileDockVisible, setIsMobileDockVisible] = useState(false);
 
   return (
@@ -50,8 +50,8 @@ export default function Home() {
                   {/* Text Content */}
                   <div className="flex-1 line-height-1">
                     <p className="text-xs text-foreground">
-                      Hi I&apos;m Ram {" "}
-                      <LinkPreview href="https://www.instagram.com/design.alex11/">visualsofalex11</LinkPreview>
+                      Hi I&apos;m {" "}
+                      <LinkPreview href="https://www.instagram.com/design.alex11/">Ram Katwal</LinkPreview>
                       , a designer based in Nepal. <br />
                       Designing thoughtful interfaces. Building polished digital products. Always exploring the tiny details that bring experiences to life.
                     </p>
@@ -68,16 +68,8 @@ export default function Home() {
               <ProjectsMarquee />
             </ScrollReveal>
 
-            <ScrollReveal delay={200}>
-              <Experience />
-            </ScrollReveal>
-
             <ScrollReveal delay={250}>
               <PersonalProjects />
-            </ScrollReveal>
-
-            <ScrollReveal delay={300}>
-              <GitHubContributions username="RamKatwal" />
             </ScrollReveal>
           </div>
         </div>
@@ -115,6 +107,12 @@ export default function Home() {
                       icon: <BookMarked className="h-full w-full text-muted-foreground dark:text-foreground" />,
                       href: '#',
                       onClick: () => { }
+                    },
+                    {
+                      title: "GitHub",
+                      icon: <Github className="h-full w-full text-muted-foreground dark:text-foreground" />,
+                      href: '#',
+                      onClick: () => setIsGitHubOpen(true)
                     },
                     {
                       title: "Notes",
@@ -180,6 +178,21 @@ export default function Home() {
       {isGuestbookOpen && (
         <div className="fixed inset-0 z-50 md:hidden bg-background">
           <Guestbook isMobileOverlay onClose={() => setIsGuestbookOpen(false)} />
+        </div>
+      )}
+
+      {/* Mobile GitHub Overlay */}
+      {isGitHubOpen && (
+        <div className="fixed inset-0 z-50 md:hidden bg-background overflow-y-auto">
+          <div className="flex items-center justify-between p-4 border-b border-border">
+            <h2 className="text-lg font-semibold">GitHub Contributions</h2>
+            <button onClick={() => setIsGitHubOpen(false)}>
+              <X size={24} />
+            </button>
+          </div>
+          <div className="p-4">
+            <GitHubContributions username="RamKatwal" />
+          </div>
         </div>
       )}
     </>
