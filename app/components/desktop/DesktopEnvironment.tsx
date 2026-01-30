@@ -1,25 +1,19 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Window from './Window';
 import Guestbook from '../common/Guestbook';
 import DailyReads from '../common/DailyReads';
-import { FloatingDock } from '@/components/ui/floating-dock';
 import {
     BookOpen,
     BookMarked,
-    Settings,
-    Music,
-    Camera,
-    FileText,
-    Globe,
-    PanelRightClose,
-    PanelRightOpen,
     ArrowRight,
     Github
 } from 'lucide-react';
 import GitHubContributions from '../common/GitHubContributions';
 import { AnimatePresence, motion } from 'motion/react';
+
+const DESKTOP_WINDOW_EVENT = 'open-desktop-window';
 
 const DesktopEnvironment = () => {
     // Start with no windows open
@@ -27,10 +21,7 @@ const DesktopEnvironment = () => {
     const [activeWindow, setActiveWindow] = useState<string | null>(null);
     const [minimizedWindows, setMinimizedWindows] = useState<Set<string>>(new Set());
 
-    // Dock visibility state
-    const [isDockVisible, setIsDockVisible] = useState(true);
-
-    const toggleWindow = (id: string) => {
+    const toggleWindow = useCallback((id: string) => {
         if (openWindows.includes(id)) {
             if (minimizedWindows.has(id)) {
                 const newMinimized = new Set(minimizedWindows);
@@ -41,10 +32,20 @@ const DesktopEnvironment = () => {
                 setActiveWindow(id);
             }
         } else {
-            setOpenWindows([...openWindows, id]);
+            setOpenWindows((prev) => [...prev, id]);
             setActiveWindow(id);
         }
-    };
+    }, [openWindows, minimizedWindows]);
+
+    // Listen for open requests from Leftbar
+    useEffect(() => {
+        const handler = (e: CustomEvent<string>) => {
+            const id = e.detail;
+            if (id === 'guestbook' || id === 'github') toggleWindow(id);
+        };
+        window.addEventListener(DESKTOP_WINDOW_EVENT as keyof WindowEventMap, handler as EventListener);
+        return () => window.removeEventListener(DESKTOP_WINDOW_EVENT as keyof WindowEventMap, handler as EventListener);
+    }, [toggleWindow]);
 
     const closeWindow = (id: string) => {
         setOpenWindows(openWindows.filter(w => w !== id));
@@ -59,57 +60,6 @@ const DesktopEnvironment = () => {
         setMinimizedWindows(newMinimized);
         setActiveWindow(null);
     };
-
-    const dockItems = [
-        {
-            title: "Guestbook",
-            icon: <BookOpen className="h-full w-full text-muted-foreground" />,
-            onClick: () => toggleWindow('guestbook'),
-            href: '#'
-        },
-        {
-            title: "Daily Reads",
-            icon: <BookMarked className="h-full w-full text-muted-foreground" />,
-            onClick: () => toggleWindow('daily-reads'),
-            href: '#'
-        },
-        {
-            title: "GitHub",
-            icon: <Github className="h-full w-full text-muted-foreground" />,
-            onClick: () => toggleWindow('github'),
-            href: '#'
-        },
-        {
-            title: "Notes",
-            icon: <FileText className="h-full w-full text-muted-foreground" />,
-            href: '#',
-            onClick: () => { } // Placeholder
-        },
-        {
-            title: "Music",
-            icon: <Music className="h-full w-full text-muted-foreground" />,
-            href: '#',
-            onClick: () => { } // Placeholder
-        },
-        {
-            title: "Gallery",
-            icon: <Camera className="h-full w-full text-muted-foreground" />,
-            href: '#',
-            onClick: () => { } // Placeholder
-        },
-        {
-            title: "Browser",
-            icon: <Globe className="h-full w-full text-muted-foreground" />,
-            href: '#',
-            onClick: () => { } // Placeholder
-        },
-        {
-            title: "Settings",
-            icon: <Settings className="h-full w-full text-muted-foreground" />,
-            href: '#',
-            onClick: () => { } // Placeholder
-        },
-    ];
 
     return (
         <div className="w-full h-full relative overflow-hidden bg-background select-none">
@@ -195,55 +145,6 @@ const DesktopEnvironment = () => {
                     </motion.div>
                 )}
             </AnimatePresence>
-
-            {/* Vertical Floating Dock (Right Side) */}
-            <div className="absolute top-1/2 -translate-y-1/2 right-0 z-50 flex items-center">
-                <AnimatePresence mode="wait">
-                    {isDockVisible ? (
-                        <motion.div
-                            key="dock"
-                            initial={{ opacity: 0, x: 20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: 20 }}
-                            className="flex flex-col items-center pr-2"
-                        >
-                            <div className="relative">
-                                <FloatingDock
-                                    items={dockItems}
-                                    desktopClassName="bg-background/80 border border-border shadow-xl backdrop-blur-md"
-                                    orientation="vertical"
-                                />
-
-                                {/* Toggle Button Positioned relative to dock */}
-                                <div className="absolute -left-12 top-1/2 -translate-y-1/2">
-                                    <button
-                                        onClick={() => setIsDockVisible(false)}
-                                        className="p-2 bg-background border border-border shadow-md rounded-full text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
-                                        title="Hide Dock"
-                                    >
-                                        <PanelRightClose size={16} />
-                                    </button>
-                                </div>
-                            </div>
-                        </motion.div>
-                    ) : (
-                        <motion.div
-                            key="toggle"
-                            initial={{ opacity: 0, x: 20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: 20 }}
-                        >
-                            <button
-                                onClick={() => setIsDockVisible(true)}
-                                className="p-3 bg-background border-y border-l border-border shadow-md rounded-l-full rounded-r-none text-muted-foreground hover:text-foreground hover:bg-accent transition-colors group"
-                                title="Show Dock"
-                            >
-                                <PanelRightOpen size={20} className="group-hover:scale-110 transition-transform" />
-                            </button>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            </div>
         </div>
     );
 };
