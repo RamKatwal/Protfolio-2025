@@ -32,6 +32,11 @@ const PersonalProjectItem: React.FC<PersonalProjectItemProps> = ({ project }) =>
         <div className="flex-1 text-left">
           <div className="flex items-center gap-2 mb-0.5">
             <h3 className="text-xs font-medium text-foreground">{project.title}</h3>
+            {project.tag && (
+              <span className="text-[10px] px-1.5 py-0.5 rounded bg-muted text-muted-foreground font-medium">
+                {project.tag}
+              </span>
+            )}
           </div>
           {project.description && (
             <p className="text-xs text-muted-foreground">{project.description}</p>

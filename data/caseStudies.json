@@ -36,6 +36,18 @@
       { "label": "Case Study", "url": "https://beneficial-ricotta-c8e.notion.site/AITC-Homes-1c6f49cc6cbd4473997618be93fe9869" },
       { "label": "Site", "url": "https://aitchomes.com" }
     ]
+  },
+
+  {
+    "id": 4,
+    "title": "Websites",
+    "description": "Collections of websites I have designed and developed",
+    "logo": "/linear.svg",
+    "previewImage": "/images/Casestudy_aitchomes.png",
+
+    "links": [
+      { "label": "Site", "url": "https://www.figma.com/proto/JkX89pTAG3IzhgZA25Nwhu/All-Sites-Collections?node-id=18-18120&t=vTDrHFRYcn0KSfa0-1" }
+    ]
   }
 ]
 

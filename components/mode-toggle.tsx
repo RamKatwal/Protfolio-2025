@@ -10,6 +10,7 @@ import {
     TooltipContent,
     TooltipTrigger,
 } from "@/app/components/ui/tooltip"
+import { Kbd } from "@/components/ui/kbd"
 
 export function ModeToggle() {
     const { theme, setTheme } = useTheme()
@@ -48,8 +49,9 @@ export function ModeToggle() {
     // we can just render the button. The icons use CSS transitions generally.
     if (!mounted) {
         return (
-            <Button variant="ghost" size="icon" disabled>
+            <Button variant="ghost" size="sm" className="gap-1.5 h-9 px-2" disabled>
                 <Sun className="h-[1.2rem] w-[1.2rem]" />
+                <Kbd className="h-4 min-w-4 text-[10px]">D</Kbd>
                 <span className="sr-only">Toggle theme</span>
             </Button>
         )
@@ -58,14 +60,20 @@ export function ModeToggle() {
     return (
         <Tooltip>
             <TooltipTrigger asChild>
-                <Button variant="ghost" size="icon" onClick={toggleTheme}>
-                    <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                    <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                <Button variant="ghost" size="sm" className="gap-1.5 h-9 px-2" onClick={toggleTheme}>
+                    <span className="relative h-[1.2rem] w-[1.2rem]">
+                        <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                        <Moon className="absolute inset-0 h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                    </span>
+                    <Kbd className="h-4 min-w-4 text-[10px]">D</Kbd>
                     <span className="sr-only">Toggle theme</span>
                 </Button>
             </TooltipTrigger>
             <TooltipContent side="bottom">
-                <p>Switch Theme (D)</p>
+                <p className="flex items-center gap-2">
+                    Switch Theme
+                    <Kbd>D</Kbd>
+                </p>
             </TooltipContent>
         </Tooltip>
     )

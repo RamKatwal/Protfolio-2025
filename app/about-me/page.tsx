@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export default function AboutPage() {
   return (
-    <div className="max-w-2xl h-full bg-background flex flex-col items-start px-4 py-2 gap-2 transition-colors duration-300">
+    <div className="max-w-2xl h-full bg-background flex flex-col items-start px-4 py-2 gap-2 transition-colors duration-300 border-r border-border">
       {/* Profile Image */}
       <div className="w-16 h-16 rounded-xl overflow-hidden border border-border">
         <Image

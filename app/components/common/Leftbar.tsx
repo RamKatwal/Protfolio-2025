@@ -3,16 +3,7 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from "next/navigation";
-import { X, Github, Twitter, Linkedin, Dribbble, Briefcase } from 'lucide-react';
-
-import {
-    HouseIcon,
-    PencilSimpleIcon,
-    StackSimpleIcon,
-    LineSegmentIcon,
-    BookmarkSimpleIcon,
-    QuestionMarkIcon
-} from './icons';
+import { X, Github, Twitter, Linkedin, Dribbble, Briefcase, BookOpen, Home, User, Bookmark } from 'lucide-react';
 
 interface NavItemProps {
     icon: React.ReactNode;
@@ -101,13 +92,28 @@ const Leftbar: React.FC<LeftbarProps> = ({ isOpen, onClose }) => {
 
 
                 <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 w-full px-2 py-2 flex-1">
-                    <NavItem icon={<HouseIcon />} label="Home" href='/' isActive={pathname === '/'} onNavigate={onClose} />
-                    <NavItem icon={<LineSegmentIcon />} label="About" href='/about-me' isActive={pathname === '/about-me'} onNavigate={onClose} />
+                    <NavItem icon={<Home size={16} />} label="Home" href='/' isActive={pathname === '/'} onNavigate={onClose} />
+                    <NavItem icon={<User size={16} />} label="About" href='/about-me' isActive={pathname === '/about-me'} onNavigate={onClose} />
                     <NavItem icon={<Briefcase size={16} />} label="Experience" href='/experience' isActive={pathname === '/experience'} onNavigate={onClose} />
-                    <NavItem icon={<PencilSimpleIcon />} label="Writing" href='/writing' isActive={pathname === '/writing'} onNavigate={onClose} />
-                    <NavItem icon={<StackSimpleIcon />} label="Stacks" href='/stacks' isActive={pathname === '/stacks'} onNavigate={onClose} />
-                    <NavItem icon={<BookmarkSimpleIcon />} label="Bookmarks" href='/bookmarks' isActive={pathname === '/bookmarks'} onNavigate={onClose} />
-                    <NavItem icon={<QuestionMarkIcon />} label="Resources" href='/resources' isActive={pathname === '/resources'} onNavigate={onClose} />
+                    {/* <NavItem icon={<PencilSimpleIcon />} label="Writing" href='/writing' isActive={pathname === '/writing'} onNavigate={onClose} /> */}
+                    {/* <NavItem icon={<StackSimpleIcon />} label="Stacks" href='/stacks' isActive={pathname === '/stacks'} onNavigate={onClose} /> */}
+                   
+                    <NavItem icon={<BookOpen size={16} />} label="Guestbook" href="/guestbook" isActive={pathname === '/guestbook'} onNavigate={onClose} />
+                    <NavItem icon={<Github size={16} />} label="GitHub" href="/github" isActive={pathname === '/github'} onNavigate={onClose} />
+                    <a
+                        href="https://beneficial-ricotta-c8e.notion.site/Design-Resources-Database-292b972ca4c24227b5edbd287109add8"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full"
+                        onClick={onClose}
+                    >
+                        <div className="box-border content-stretch flex gap-[8px] h-[36px] items-center px-[16px] py-[8px] relative rounded-[6px] shrink-0 w-full cursor-pointer transition-all duration-200 ease-in-out bg-transparent hover:bg-accent hover:text-accent-foreground text-foreground">
+                            <div className="relative shrink-0 size-[16px] text-foreground">
+                                <Bookmark size={16} />
+                            </div>
+                            <p className="font-medium leading-[18px] not-italic relative shrink-0 text-xs text-nowrap whitespace-pre text-foreground">Resources</p>
+                        </div>
+                    </a>
                 </div>
 
                 {/* Social Links at bottom */}

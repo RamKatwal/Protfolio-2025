@@ -1,10 +1,18 @@
 [
   {
     "id": 1,
-    "title": "Design.Resources",
-    "description": "A curated Notion database of essential design resources for UI/UX designers",
-    "url": "https://beneficial-ricotta-c8e.notion.site/Design-Resources-Database-292b972ca4c24227b5edbd287109add8",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg"
+    "title": "Design.Web",
+    "description": "Curated sites from the internet",
+    "url": "https://www.designdotweb.site/",
+    "logo": "/images/Designdotweb logo.svg"
+  },
+  {
+    "id": 2,
+    "title": "Design.Pin",
+    "description": "Minimal Bookmarks Site",
+    "url": "#",
+    "logo": "/images/Designdotweb logo.svg",
+    "tag": "Coming Soon"
   }
 ]
 

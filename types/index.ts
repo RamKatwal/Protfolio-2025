@@ -44,4 +44,5 @@ export interface PersonalProjectData {
   description?: string;
   url?: string; // Optional URL for the project
   logo?: string; // Optional logo image path
+  tag?: string; // Optional tag (e.g. "Coming Soon")
 }
